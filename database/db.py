@@ -87,6 +87,7 @@ class DB:
 
     class Operations:
         def close():
+            Print.green("DB connection closed.")
             conn.close()
 
         def reset():
