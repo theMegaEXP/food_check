@@ -2,7 +2,6 @@ from PyQt5.QtWidgets import QWidget
 
 from gui.designer.Ui_addFoodPage import Ui_addFoodPage
 from gui.widgets.addIngredient import AddIngredient
-from data.init import foods
 
 class AddFoodPage:
     def __init__(self, main_window):

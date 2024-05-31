@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget
 
 from gui.designer.Ui_barcodePage import Ui_barcodePage
-from data.barcode_search import get_product_ingredients
+#from data.barcode_search import get_product_ingredients
 
 class BarcodePage:
     def __init__(self, main_window):
@@ -26,11 +26,12 @@ class BarcodePage:
             self.ui.errorMsg.setText("The barcode must only contain digits.")
             self.ui.errorMsg.setVisible(True)
         else:
-            product, ingredients = get_product_ingredients(text)
-            if product == None and ingredients == None:
-                self.ui.errorMsg.setText("Information from this barcode could not be found. Please return to the homepage and enter the ingredients manually.")
-            else:
-                self.mw.page_connect_home()
+            pass
+            # product, ingredients = get_product_ingredients(text)
+            # if product == None and ingredients == None:
+            #     self.ui.errorMsg.setText("Information from this barcode could not be found. Please return to the homepage and enter the ingredients manually.")
+            # else:
+            #     self.mw.page_connect_home()
 
         self.ui.errorMsg.setVisible(True)
 
