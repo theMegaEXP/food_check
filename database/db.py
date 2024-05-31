@@ -50,6 +50,16 @@ class DB:
         def composite_key_exists(table: str, column1: str, value1: str, column2: str, value2: str):
             c.execute(f"SELECT COUNT(*) FROM {table} WHERE {column1} = ? AND {column2} = ?", (value1, value2))
             return c.fetchone()[0] > 0
+        
+        def delete_by_column(table: str, column: str, value: str):
+            c.execute(f"DELETE FROM {table} WHERE {column} = {value}")
+
+        def update_by_column(table: str, columns: list[str], values: list[str], column: str, value: str):
+            if len(columns) != len(values):
+                raise "Columns and values are not the same lenght."
+            
+            set = ', '.join([f"{columns[i]} = '{values[i]}'" for i in range(len(columns))])
+            c.execute(f"UPDATE {table} SET {set} WHERE {column} = {value}")
             
     class View:
         def show_tables():
