@@ -1,12 +1,12 @@
 from PyQt5.QtWidgets import QWidget
 
-from gui.designer.Ui_addIngredient import Ui_addIngredient
+from gui.designer.Ui_itemInput import Ui_itemInput
 
-class AddIngredient:
+class ItemInput:
     def __init__(self, parent):
         self.p = parent
         self.widget = QWidget()
-        self.ui = Ui_addIngredient()
+        self.ui = Ui_itemInput()
         self.ui.setupUi(self.widget)
 
         self.form_setup()

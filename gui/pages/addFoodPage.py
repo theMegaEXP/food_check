@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget
 
 from gui.designer.Ui_addFoodPage import Ui_addFoodPage
-from gui.widgets.addIngredient import AddIngredient
+from gui.widgets.itemInput import ItemInput
 
 class AddFoodPage:
     def __init__(self, main_window):
@@ -16,5 +16,5 @@ class AddFoodPage:
         self.ui.addBtn.clicked.connect(lambda: self.add_ingredient_input())
 
     def add_ingredient_input(self):
-        add_ingredient = AddIngredient(self)
+        add_ingredient = ItemInput(self)
         self.ui.ingredientInputs.addWidget(add_ingredient.widget)
