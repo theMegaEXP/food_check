@@ -5,7 +5,7 @@ from gui.designer.Ui_addSymptomPage import Ui_addSymptomPage
 
 class AddSymptomPage:
     def __init__(self, main_window):
-        self.main_window = main_window
+        self.mw = main_window
         self.widget = QWidget()
         self.ui = Ui_addSymptomPage()
         self.ui.setupUi(self.widget)
@@ -15,6 +15,8 @@ class AddSymptomPage:
     def form_setup(self):
         #items = [symptom['symptom'] for symptom in symptoms.data]
         #self.ui.symptomInput.addItems(items)
+        
+        self.ui.addSymptomBtn.clicked.connect(lambda: self.mw.page_connect_symptoms())
 
         self.ui.dateInput.setDate(QDate.currentDate())
         self.ui.timeInput.setTime(QTime.currentTime())
@@ -22,5 +24,5 @@ class AddSymptomPage:
         self.ui.submit.clicked.connect(lambda: self.submit())
 
     def submit(self):
-        self.main_window.page_connect_home()
+        self.mw.page_connect_home()
         
