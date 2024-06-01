@@ -1,9 +1,10 @@
 from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import QDate, QTime
+from PyQt5.QtCore import QDate, QTime, QObject
 
 from gui.designer.Ui_addSymptomPage import Ui_addSymptomPage
+from models.symptomsAvailable import SymptomsAvailable
 
-class AddSymptomPage:
+class AddSymptomPage():
     def __init__(self, main_window):
         self.mw = main_window
         self.widget = QWidget()
@@ -13,8 +14,7 @@ class AddSymptomPage:
         self.form_setup()
 
     def form_setup(self):
-        #items = [symptom['symptom'] for symptom in symptoms.data]
-        #self.ui.symptomInput.addItems(items)
+        self.ui.symptomInput.addItems([symptom[0] for symptom in SymptomsAvailable.fetch()])
         
         self.ui.addSymptomBtn.clicked.connect(lambda: self.mw.page_connect_symptoms())
 
@@ -25,4 +25,8 @@ class AddSymptomPage:
 
     def submit(self):
         self.mw.page_connect_home()
+
+    def update_symptom_input(self):
+        self.ui.symptomInput.clear()
+        self.ui.symptomInput.addItems([symptom[0] for symptom in SymptomsAvailable.fetch()])
         

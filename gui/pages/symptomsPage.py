@@ -4,7 +4,7 @@ from gui.designer.Ui_symptomsPage import Ui_symptomsPage
 from gui.widgets.itemInput import ItemInput
 from models.symptomsAvailable import SymptomsAvailable
 
-class SymptomsPage:
+class SymptomsPage():
     def __init__(self, main_window):
         self.mw = main_window
         self.widget = QWidget()
@@ -34,9 +34,9 @@ class SymptomsPage:
         for i in range(self.ui.symptomsLayout.count()):
             widget = self.ui.symptomsLayout.itemAt(i).widget()
             if isinstance(widget, QWidget):
-                input_field = widget.findChild(QLineEdit, "input")
-                if input_field.text() != '':
-                    SymptomsAvailable.create(input_field.text())
+                input_text = widget.findChild(QLineEdit, "input").text()
+                if input_text != '':
+                    SymptomsAvailable.create(input_text)
 
         self.mw.page_connect_add_symptom()
                     
