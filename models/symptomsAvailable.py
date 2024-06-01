@@ -1,4 +1,5 @@
 from database.db import DB
+from database.tables import Tables
 
 class SymptomsAvailable:
     def create(symptom):
@@ -13,3 +14,8 @@ class SymptomsAvailable:
 
     def fetch():
         return DB.Query.fetch_columns('syptoms', ['symptom'])
+    
+    def reset():
+        DB.Query.drop_table('symptoms')
+        Tables.create_symptoms_table()
+        

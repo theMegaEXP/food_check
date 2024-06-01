@@ -1,4 +1,5 @@
 from database.db import DB
+from database.tables import Tables
 
 class IgnoredIngredients:
     def create(ingredient):
@@ -13,3 +14,7 @@ class IgnoredIngredients:
 
     def fetch():
         return DB.Query.fetch_columns('ignored_ingredients', ['ingredient'])
+    
+    def reset():
+        DB.Query.drop_table('ignored_ingredients')
+        Tables.create_ignored_ingredients_table()

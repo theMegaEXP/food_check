@@ -1,4 +1,5 @@
 from database.db import DB
+from database.tables import Tables
 from helpers import format_datetime
 
 class SymptomsTimes:
@@ -14,3 +15,7 @@ class SymptomsTimes:
 
     def fetch():
         return DB.Query.query_results("SELECT symptom, date, time FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptom.id")
+    
+    def reset():
+        DB.Query.drop_table('symptom_times')
+        Tables.create_symptom_times_table()
