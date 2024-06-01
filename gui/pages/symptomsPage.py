@@ -11,11 +11,18 @@ class SymptomsPage:
         self.ui = Ui_symptomsPage()
         self.ui.setupUi(self.widget)
 
+        self.widget_setup()
         self.form_setup()
 
     def form_setup(self):
         self.ui.returnBtn.clicked.connect(lambda: self.save_items())
         self.ui.addBtn.clicked.connect(lambda: self.add_item_input())
+
+    def widget_setup(self):
+        symptoms = SymptomsAvailable.fetch()
+        for symptom in symptoms:
+            item_input = ItemInput(self, symptom[0])
+            self.ui.symptomsLayout.addWidget(item_input.widget)
 
     def add_item_input(self):
         item_input = ItemInput(self)

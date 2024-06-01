@@ -13,7 +13,7 @@ class SymptomsAvailable:
         DB.Query.delete_by_column('symptoms', 'symptom', symptom)
 
     def fetch():
-        return DB.Query.fetch_columns('syptoms', ['symptom'])
+        return DB.Query.fetch_columns('symptoms', ['symptom'])
     
     def reset():
         DB.Query.drop_table('symptoms')
