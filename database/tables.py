@@ -1,47 +1,66 @@
 from database.db import DB
 from commandline.print import Print
+import inspect
 
-def create_tables():
-    DB.Query.create_table('ingredients', ['id INTEGER PRIMARY KEY', 
-                                          'ingredient TEXT UNIQUE'])
-    
-    DB.Query.create_table('ingredient_times', ['id INTEGER PRIMARY KEY',
-                                               'ingredient_id INTEGER',
-                                               'date TEXT NULL',
-                                               'time TEXT NULL',
-                                               'datetime TEXT',
-                                               'FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)'])
+class Tables:
+    def create_tables():
+        current_method = inspect.currentframe().f_code.co_name
 
-    DB.Query.create_table('products', ['id INTEGER PRIMARY KEY', 
-                                    'product TEXT UNIQUE', 
-                                    'barcode TEXT UNIQUE'])
-    
-    DB.Query.create_table('product_times', ['id INTEGER PRIMARY KEY',
-                                            'product_id INTEGER',
-                                            'date TEXT NULL',
-                                            'time TEXT NULL',
-                                            'datetime TEXT',
-                                            'FOREIGN KEY (product_id) REFERENCES products(id)'])
-    
-    DB.Query.create_table('product_ingredients', ['product_id INTEGER',
-                                                  'ingredient_id INTEGER',
-                                                  'FOREIGN KEY (product_id) REFERENCES products(id)',
-                                                  'FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)',
-                                                  'PRIMARY KEY (product_id, ingredient_id)'])
+        for name, method in inspect.getmembers(Tables, predicate=inspect.isfunction):
+            if name != current_method:
+                method()
 
-    DB.Query.create_table('symptoms', ['id INTEGER PRIMARY KEY', 
-                                       'symptom TEXT UNIQUE'])
+        Print.green("Database tables created.")
 
-    DB.Query.create_table('symptom_times', ['id INTEGER PRIMARY KEY', 
-                                            'symptom_id INTEGER', 
-                                            'severity INTEGER CHECK(severity >= 1 AND severity <= 10)',
-                                            'date TEXT NULL',
-                                            'time TEXT NULL',
-                                            'datetime TEXT',
-                                            'FOREIGN KEY (symptom_id) REFERENCES symptoms(id)'])
+    def create_ingredients_table():
+        DB.Query.create_table('ingredients', ['id INTEGER PRIMARY KEY', 
+                                            'ingredient TEXT UNIQUE'])
+        
+    def create_ingredient_times_table():
+        DB.Query.create_table('ingredient_times', ['id INTEGER PRIMARY KEY',
+                                                'ingredient_id INTEGER',
+                                                'date TEXT NULL',
+                                                'time TEXT NULL',
+                                                'datetime TEXT',
+                                                'FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)'])
+
+    def create_products_table():
+        DB.Query.create_table('products', ['id INTEGER PRIMARY KEY', 
+                                        'product TEXT UNIQUE', 
+                                        'barcode TEXT UNIQUE'])
+
+
+    def create_product_times_table():
+        DB.Query.create_table('product_times', ['id INTEGER PRIMARY KEY',
+                                                'product_id INTEGER',
+                                                'date TEXT NULL',
+                                                'time TEXT NULL',
+                                                'datetime TEXT',
+                                                'FOREIGN KEY (product_id) REFERENCES products(id)'])
+
+    def create_product_ingredients_table():
+        DB.Query.create_table('product_ingredients', ['product_id INTEGER',
+                                                    'ingredient_id INTEGER',
+                                                    'FOREIGN KEY (product_id) REFERENCES products(id)',
+                                                    'FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)',
+                                                    'PRIMARY KEY (product_id, ingredient_id)'])
+
+    def create_symptoms_table():
+        DB.Query.create_table('symptoms', ['id INTEGER PRIMARY KEY', 
+                                        'symptom TEXT UNIQUE'])
+
+    def create_symptom_times_table():
+        DB.Query.create_table('symptom_times', ['id INTEGER PRIMARY KEY', 
+                                                'symptom_id INTEGER', 
+                                                'severity INTEGER CHECK(severity >= 1 AND severity <= 10)',
+                                                'date TEXT NULL',
+                                                'time TEXT NULL',
+                                                'datetime TEXT',
+                                                'FOREIGN KEY (symptom_id) REFERENCES symptoms(id)'])
+
+    def create_ignored_ingredients_table():   
+        DB.Query.create_table('ignored_ingredients', ['id INTEGER PRIMARY KEY',
+                                                    'ingredient TEXT'])
     
-    DB.Query.create_table('ignored_ingredients', ['id INTEGER PRIMARY KEY',
-                                                  'ingredient TEXT'])
     
-    Print.green("Database tables created.")
 

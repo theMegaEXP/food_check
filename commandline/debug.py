@@ -1,7 +1,7 @@
 import re
 
 from commandline.print import Print
-import database.tables as tables
+from database.tables import Tables
 from database.db import DB
 
 def debug():
@@ -16,13 +16,13 @@ def debug():
         query_input = input("Command: ")
         
         if query_input == 'exit':
-            DB.Operations.close()
-            Print.green("Database closed.")
+            #DB.Operations.close()
+            #Print.green("Database closed.")
             break
 
         elif query_input == 'reset':
             DB.Operations.reset()
-            tables.create_tables()
+            Tables.create_tables()
 
         elif re.search(r'^show ([^\s]+)$', query_input):
             table_name = query_input.split(' ')[1]
