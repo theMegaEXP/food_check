@@ -12,7 +12,7 @@ class ItemInput:
         self.form_setup()
 
     def form_setup(self):
-        self.ui.deleteBtn.clicked.connect(lambda: self.delete())
+        self.ui.deleteBtn.clicked.connect(lambda: self.delete()) 
 
     def delete(self):
         self.widget.deleteLater()
