@@ -22,14 +22,16 @@ class SymptomsPage:
         self.ui.symptomsLayout.addWidget(item_input.widget)
 
     def save_items(self):
-        self.mw.page_connect_add_symptom()
-        
+        SymptomsAvailable.reset()
+
         for i in range(self.ui.symptomsLayout.count()):
             widget = self.ui.symptomsLayout.itemAt(i).widget()
             if isinstance(widget, QWidget):
                 input_field = widget.findChild(QLineEdit, "input")
-                if input_field:
+                if input_field.text() != '':
                     SymptomsAvailable.create(input_field.text())
+
+        self.mw.page_connect_add_symptom()
                     
 
                 
