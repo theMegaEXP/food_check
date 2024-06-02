@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QWidget
+from PyQt5.QtCore import QDate
 
 from gui.designer.Ui_homePage import Ui_homePage
 from gui.pages.showFoodsPage import ShowFoodsPage
@@ -35,6 +36,7 @@ class HomePage:
         self.ui.stackedWidget.setCurrentWidget(page)
 
     def date_edit_setup(self):
+        self.ui.dateEdit.setDate(QDate.currentDate())
         self.ui.dateEdit.dateChanged.connect(lambda: self.update_pages())
 
     def update_pages(self):
