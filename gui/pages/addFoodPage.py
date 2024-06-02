@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QWidget
+from PyQt5.QtCore import QDate, QTime
 
 from gui.designer.Ui_addFoodPage import Ui_addFoodPage
 from gui.widgets.itemInput import ItemInput
@@ -14,6 +15,8 @@ class AddFoodPage:
 
     def form_setup(self):
         self.ui.addBtn.clicked.connect(lambda: self.add_ingredient_input())
+        self.ui.dateInput.setDate(QDate.currentDate())
+        self.ui.timeInput.setTime(QTime.currentTime())
 
     def add_ingredient_input(self):
         add_ingredient = ItemInput(self)
