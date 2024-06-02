@@ -6,12 +6,12 @@ from database.db import DB
 
 def debug():
     Print.bold("You have entered the debug area for the database.")
-    print("Type 'exit' to exit. Type 'show' followed by a table to show a table.")
+    print("Type 'exit' to exit.")
     print("Type 'reset' to reset the entire database.")
     print("Type 'reset' followed by a table name to reset a DB table.")
     print("Type 'show' followed by a table name to view a DB table.")
-    print("Type -q followed by a query to query the database.")
-    Print.orange("WARNING: Editing database tables may break the app!")
+    print("Type '-q' followed by a SQL query to query the database.")
+    Print.orange("WARNING: Editing database tables may break the app! If this happens type 'reset' to reset the app.")
     
     while True:
         query_input = input("Command: ")
