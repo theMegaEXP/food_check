@@ -25,7 +25,7 @@ class SymptomTimes:
         except ValueError:
             raise ValueError
 
-        return DB.Query.query_results(f"SELECT symptom, severity, date, time{', symptom_times.id' if return_id else ''} FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptoms.id WHERE date = '{date}'")
+        return DB.Query.query_results(f"SELECT symptom, severity, date, time{', symptom_times.id' if return_id else ''} FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptoms.id WHERE date = '{date}' ORDER BY datetime")
     
     def reset():
         DB.Query.drop_table('symptom_times')
