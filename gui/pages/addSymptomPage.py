@@ -24,6 +24,16 @@ class AddSymptomPage():
         self.ui.submit.clicked.connect(lambda: self.submit())
 
     def submit(self):
+        symptom = self.ui.symptomInput.currentText()
+        severity = self.ui.severityInput.text()
+        date = self.ui.dateInput.text()
+        time = self.ui.timeInput.text()
+
+        print(symptom)
+        print(severity)
+        print(date)
+        print(time)
+
         self.mw.page_connect_home()
 
     def update_symptom_input(self):

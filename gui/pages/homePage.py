@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QWidget
 from gui.designer.Ui_homePage import Ui_homePage
 from gui.pages.showFoodsPage import ShowFoodsPage
 from gui.pages.showSymptomsPage import ShowSymptomsPage
+from models.symptomTimes import SymptomsTimes
 
 class HomePage:
     def __init__(self, main_window):
@@ -31,3 +32,9 @@ class HomePage:
 
     def page_connect_displays(self, page):
         self.ui.stackedWidget.setCurrentWidget(page)
+
+    def update_foods_page():
+        pass
+
+    def update_symptoms_page():
+        pass
