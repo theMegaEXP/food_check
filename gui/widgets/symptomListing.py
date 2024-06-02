@@ -38,5 +38,4 @@ class SymptomListing:
             print("update")
         elif action == delete_action:
             SymptomTimes.delete(self.id)
-            print("Deleted symptom " + str(self.id))
             self.p.update_listings(self.kwargs['date'])

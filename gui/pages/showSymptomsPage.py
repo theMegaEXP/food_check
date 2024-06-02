@@ -12,7 +12,6 @@ class ShowSymptomsPage:
         self.ui.setupUi(self.widget)
     
     def update_listings(self, date:str=None):
-        print("Listings updated")
         self.delete_lisings()
 
         if date == None:
