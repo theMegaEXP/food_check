@@ -7,7 +7,8 @@ from database.db import DB
 def debug():
     Print.bold("You have entered the debug area for the database.")
     print("Type 'exit' to exit. Type 'show' followed by a table to show a table.")
-    print("Type 'reset' to reset the database.")
+    print("Type 'reset' to reset the entire database.")
+    print("Type 'reset' followed by a table name to reset a DB table.")
     print("Type 'show' followed by a table name to view a DB table.")
     print("Type -q followed by a query to query the database.")
     Print.orange("WARNING: Editing database tables may break the app!")
@@ -23,6 +24,17 @@ def debug():
         elif query_input == 'reset':
             DB.Operations.reset()
             Tables.create_tables()
+
+        elif re.search(r'^reset ([^\s]+)$', query_input):
+            table_name = query_input.split(' ')[1]
+            method_name = f'create_{table_name}_table'
+
+            try:
+                DB.Query.drop_table(table_name)
+                getattr(Tables, method_name)() # calls the method to recreate the table
+                Print.green(f"Table {table_name} reset.")
+            except Exception:
+                Print.red(f"Table {table_name} does not exist.")
 
         elif re.search(r'^show ([^\s]+)$', query_input):
             table_name = query_input.split(' ')[1]
