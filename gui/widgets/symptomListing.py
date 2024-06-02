@@ -21,10 +21,11 @@ class SymptomListing:
 
     def context_menu_setup(self):
         self.widget.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.widget.customContextMenuRequested.connect(self.show_context_menu)
+        self.widget.customContextMenuRequested.connect(lambda: self.show_context_menu(self.ui.dateLabel.pos()))
 
     def show_context_menu(self, pos):
-        context_menu = QMenu(self)
+        print("method called")
+        context_menu = QMenu(self.widget)
         update_action = context_menu.addAction("Update")
         delete_action = context_menu.addAction("Delete")
         action = context_menu.exec_(self.widget.mapToGlobal(pos))
