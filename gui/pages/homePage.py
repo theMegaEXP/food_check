@@ -13,6 +13,7 @@ class HomePage:
 
         self.page_setup()
         self.button_setup()
+        self.update_pages()
 
     def page_setup(self):
         self.show_foods_page = ShowFoodsPage()

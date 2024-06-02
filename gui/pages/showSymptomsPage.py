@@ -9,8 +9,6 @@ class ShowSymptomsPage:
         self.widget = QWidget()
         self.ui = Ui_showSymptomsPage()
         self.ui.setupUi(self.widget)
-
-        self.update_listings()
     
     def update_listings(self):
         self.delete_lisings()
@@ -24,7 +22,7 @@ class ShowSymptomsPage:
     def delete_lisings(self):
         while self.ui.verticalLayout.count():
             item = self.ui.verticalLayout.takeAt(0)
-            widget = item.widget
+            widget = item.widget()
             if widget:
                 widget.deleteLater()
             else:

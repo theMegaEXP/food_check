@@ -37,6 +37,7 @@ class MainWindow:
         self.ui.stackedWidget.setCurrentWidget(page)
 
     def page_connect_home(self):
+        self.home_page.update_pages()
         self.page_connect(self.home_page.widget)
 
     def page_connect_add_symptom(self):
