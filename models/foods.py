@@ -2,7 +2,7 @@ from database.db import DB
 from helpers import format_datetime
 
 class Foods:
-    def create(**data):
+    def store(**data):
         product_provided = False
         
         

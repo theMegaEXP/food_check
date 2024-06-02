@@ -2,7 +2,7 @@ from database.db import DB
 from database.tables import Tables
 
 class IgnoredIngredients:
-    def create(ingredient):
+    def store(ingredient):
         if not DB.Query.value_exists('ignored_ingredients', 'ingredient', ingredient):
             DB.Query.insert_into('ignored_ingredients', 'ingredient', ingredient)
 

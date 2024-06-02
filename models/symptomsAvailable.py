@@ -2,7 +2,7 @@ from database.db import DB
 from database.tables import Tables
 
 class SymptomsAvailable:
-    def create(symptom):
+    def store(symptom):
         if not DB.Query.value_exists('symptoms', 'symptom', symptom):
             DB.Query.insert_into('symptoms', ['symptom'], [symptom])
 

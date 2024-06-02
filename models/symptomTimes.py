@@ -2,8 +2,8 @@ from database.db import DB
 from database.tables import Tables
 from helpers import format_datetime
 
-class SymptomsTimes:
-    def create(**data):
+class SymptomTimes:
+    def store(**data):
         if DB.Query.value_exists('symptoms', 'symptom', data['symptom']):
             symptom_id = DB.Query.fetch_id('symptoms', 'symptom', data['symptom'])
             DB.Query.insert_into('symptom_times', ['symptom_id', 'date', 'time', 'datetime'], [symptom_id, data['date'], data['time'], format_datetime(data['date'], data['time'])])
