@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QMenu
-from PyQt5.QtCore import Qt, QDate
+from PyQt5.QtCore import Qt
+from datetime import datetime
 
 from gui.designer.Ui_symptomListing import Ui_symptomListing
 from models.symptomTimes import SymptomTimes
@@ -35,7 +36,16 @@ class SymptomListing:
         action = context_menu.exec_(self.widget.mapToGlobal(pos))
 
         if action == update_action:
-            print("update")
+            mw = self.p.p.mw
+            mw.add_symptom_page.ui.symptomInput.setCurrentText(self.ui.symptomLabel.text())
+            mw.add_symptom_page.ui.severityInput.setValue(int(self.ui.severityLabel.text()))
+            mw.add_symptom_page.ui.dateInput.setDate(datetime.strptime(self.ui.dateLabel.text(), '%m/%d/%Y'))
+            mw.add_symptom_page.ui.timeInput.setTime(datetime.strptime(self.ui.timeLabel.text(), '%I:%M %p'))
+
+            mw.page_connect_add_symptom()
+
         elif action == delete_action:
             SymptomTimes.delete(self.id)
             self.p.update_listings(self.kwargs['date'])
+
+    

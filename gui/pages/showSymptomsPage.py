@@ -6,7 +6,8 @@ from gui.widgets.symptomListing import SymptomListing
 from models.symptomTimes import SymptomTimes
 
 class ShowSymptomsPage:
-    def __init__(self):
+    def __init__(self, parent):
+        self.p = parent
         self.widget = QWidget()
         self.ui = Ui_showSymptomsPage()
         self.ui.setupUi(self.widget)
