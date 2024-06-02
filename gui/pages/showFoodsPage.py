@@ -9,10 +9,10 @@ class ShowFoodsPage:
         self.ui = Ui_showFoodsPage()
         self.ui.setupUi(self.widget)
 
-        self.generate_listings()
+        self.update_listings()
         self.add_items()
     
-    def generate_listings(self):
+    def update_listings(self):
         pass
         # for food in foods.data:
         #     food_listing = FoodListing(barcode=food['barcode'], product=food['product'], ingredients=food['ingredients'], date=food['date'], time=food['time'])

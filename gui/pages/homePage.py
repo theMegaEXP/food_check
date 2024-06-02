@@ -32,8 +32,6 @@ class HomePage:
     def page_connect_displays(self, page):
         self.ui.stackedWidget.setCurrentWidget(page)
 
-    def update_foods_page():
-        pass
-
-    def update_symptoms_page():
-        pass
+    def update_pages(self):
+        #self.show_foods_page.update_listings()
+        self.show_symptoms_page.update_listings()

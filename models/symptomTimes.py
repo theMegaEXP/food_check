@@ -15,7 +15,7 @@ class SymptomTimes:
         pass
 
     def fetch():
-        return DB.Query.query_results("SELECT symptom, date, time FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptom.id")
+        return DB.Query.query_results("SELECT symptom, severity, date, time FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptoms.id")
     
     def reset():
         DB.Query.drop_table('symptom_times')
