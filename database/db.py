@@ -53,6 +53,7 @@ class DB:
         
         def delete_by_column(table: str, column: str, value: str):
             c.execute(f"DELETE FROM {table} WHERE {column} = {value}")
+            conn.commit()
 
         def update_by_column(table: str, columns: list[str], values: list[str], column: str, value: str):
             if len(columns) != len(values):
