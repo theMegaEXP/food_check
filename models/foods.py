@@ -1,6 +1,15 @@
 from database.db import DB
 from time_helpers import Time
 
+# Tables involved
+
+# ingredients
+# products
+# product_ingredients
+# product_times
+# symptom_times
+
+
 class Foods:
     def store(**data):
         product_provided = False
