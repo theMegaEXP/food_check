@@ -13,19 +13,19 @@ class SymptomTimes:
     def update(old_symptom, new_symptom):
         DB.Query.update_by_column('symptoms', ['symptom'], [old_symptom], 'symptom', new_symptom)
 
-    def delete(symptom):
-        pass
+    def delete(id):
+        DB.Query.delete_by_column('symptom_times', 'id', id)
 
     def fetch():
         return DB.Query.query_results("SELECT symptom, severity, date, time FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptoms.id")
     
-    def fetch_by_date(date: str):
+    def fetch_by_date(date: str, return_id:bool=False):
         try:
             datetime.strptime(date, '%m/%d/%Y')
         except ValueError:
             raise ValueError
 
-        return DB.Query.query_results(f"SELECT symptom, severity, date, time FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptoms.id WHERE date = '{date}'")
+        return DB.Query.query_results(f"SELECT symptom, severity, date, time{', symptom_times.id' if return_id else ''} FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptoms.id WHERE date = '{date}'")
     
     def reset():
         DB.Query.drop_table('symptom_times')

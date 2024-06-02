@@ -17,8 +17,8 @@ class ShowSymptomsPage:
         if date == None:
             date = datetime.today().strftime('%m/%d/%Y')
         
-        for symptom in SymptomTimes.fetch_by_date(date):
-            symptom_listing = SymptomListing(symptom=symptom[0], severity=str(symptom[1]), date=symptom[2], time=symptom[3])
+        for symptom in SymptomTimes.fetch_by_date(date, True):
+            symptom_listing = SymptomListing(self, symptom=symptom[0], severity=str(symptom[1]), date=symptom[2], time=symptom[3], id=symptom[4])
             self.ui.verticalLayout.addWidget(symptom_listing.widget)
 
         self.ui.verticalLayout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
