@@ -2,13 +2,13 @@ from datetime import datetime
 
 from database.db import DB
 from database.tables import Tables
-from helpers import format_datetime
+from time_helpers import Time
 
 class SymptomTimes:
     def store(**data):
         if DB.Query.value_exists('symptoms', 'symptom', data['symptom']):
             symptom_id = DB.Query.fetch_id('symptoms', 'symptom', data['symptom'])
-            DB.Query.insert_into('symptom_times', ['symptom_id', 'severity', 'date', 'time', 'datetime'], [symptom_id, data['severity'], data['date'], data['time'], format_datetime(data['date'], data['time'])])
+            DB.Query.insert_into('symptom_times', ['symptom_id', 'severity', 'date', 'time', 'datetime'], [symptom_id, data['severity'], data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
 
     def update(old_symptom, new_symptom):
         DB.Query.update_by_column('symptoms', ['symptom'], [old_symptom], 'symptom', new_symptom)

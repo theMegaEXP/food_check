@@ -1,5 +1,5 @@
 from database.db import DB
-from helpers import format_datetime
+from time_helpers import Time
 
 class Foods:
     def store(**data):
@@ -15,7 +15,7 @@ class Foods:
 
             # Insert into product_times table
             product_id = DB.Query.fetch_id('products', 'barcode', data['barcode']) or DB.Query.fetch_id('products', 'product', data['product'])
-            DB.Query.insert_into('product_times', ['product_id', 'date', 'time', 'datetime'], [product_id, data['date'], data['time'], format_datetime(data['date'], data['time'])])
+            DB.Query.insert_into('product_times', ['product_id', 'date', 'time', 'datetime'], [product_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
             
         for ingredient in data['ingredients']:
             
@@ -31,7 +31,7 @@ class Foods:
 
             # Insert into ingredient_times table
             ingredient_id = DB.Query.fetch_id('ingredients', 'ingredient', ingredient)
-            DB.Query.insert_into('ingredient_times', ['ingredient_id', 'date', 'time', 'datetime'], [ingredient_id, data['date'], data['time'], format_datetime(data['date'], data['time'])])
+            DB.Query.insert_into('ingredient_times', ['ingredient_id', 'date', 'time', 'datetime'], [ingredient_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
 
     def update():
         pass
