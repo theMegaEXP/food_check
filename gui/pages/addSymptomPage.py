@@ -14,7 +14,7 @@ class AddSymptomPage():
         self.form_setup()
 
     def form_setup(self):
-        self.ui.symptomInput.addItems([symptom[0] for symptom in SymptomsAvailable.fetch()])
+        self.update_symptom_input()
         
         self.ui.addSymptomBtn.clicked.connect(lambda: self.mw.page_connect_symptoms())
 
