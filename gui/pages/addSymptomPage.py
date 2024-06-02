@@ -3,6 +3,7 @@ from PyQt5.QtCore import QDate, QTime, QObject
 
 from gui.designer.Ui_addSymptomPage import Ui_addSymptomPage
 from models.symptomsAvailable import SymptomsAvailable
+from models.symptomTimes import SymptomTimes
 
 class AddSymptomPage():
     def __init__(self, main_window):
@@ -29,11 +30,7 @@ class AddSymptomPage():
         date = self.ui.dateInput.text()
         time = self.ui.timeInput.text()
 
-        print(symptom)
-        print(severity)
-        print(date)
-        print(time)
-
+        SymptomTimes.store(symptom=symptom, severity=severity, date=date, time=time)
         self.mw.page_connect_home()
 
     def update_symptom_input(self):

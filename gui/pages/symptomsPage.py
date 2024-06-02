@@ -36,7 +36,7 @@ class SymptomsPage():
             if isinstance(widget, QWidget):
                 input_text = widget.findChild(QLineEdit, "input").text()
                 if input_text != '':
-                    SymptomsAvailable.create(input_text)
+                    SymptomsAvailable.store(input_text)
 
         self.mw.page_connect_add_symptom()
                     

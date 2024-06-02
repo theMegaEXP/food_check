@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QWidget
 from gui.designer.Ui_homePage import Ui_homePage
 from gui.pages.showFoodsPage import ShowFoodsPage
 from gui.pages.showSymptomsPage import ShowSymptomsPage
-from models.symptomTimes import SymptomsTimes
 
 class HomePage:
     def __init__(self, main_window):
