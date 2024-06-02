@@ -13,6 +13,7 @@ class HomePage:
 
         self.page_setup()
         self.button_setup()
+        self.date_edit_setup()
         self.update_pages()
 
     def page_setup(self):
@@ -33,6 +34,9 @@ class HomePage:
     def page_connect_displays(self, page):
         self.ui.stackedWidget.setCurrentWidget(page)
 
+    def date_edit_setup(self):
+        self.ui.dateEdit.dateChanged.connect(lambda: self.update_pages())
+
     def update_pages(self):
         #self.show_foods_page.update_listings()
-        self.show_symptoms_page.update_listings()
+        self.show_symptoms_page.update_listings(self.ui.dateEdit.text())

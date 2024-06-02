@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from database.db import DB
 from database.tables import Tables
 from helpers import format_datetime
@@ -16,6 +18,14 @@ class SymptomTimes:
 
     def fetch():
         return DB.Query.query_results("SELECT symptom, severity, date, time FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptoms.id")
+    
+    def fetch_by_date(date: str):
+        try:
+            datetime.strptime(date, '%m/%d/%Y')
+        except ValueError:
+            raise ValueError
+
+        return DB.Query.query_results(f"SELECT symptom, severity, date, time FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptoms.id WHERE date = '{date}'")
     
     def reset():
         DB.Query.drop_table('symptom_times')

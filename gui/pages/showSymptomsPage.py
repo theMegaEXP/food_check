@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QSpacerItem, QSizePolicy
+from datetime import datetime
 
 from gui.designer.Ui_showSymptomsPage import Ui_showSymptomsPage
 from gui.widgets.symptomListing import SymptomListing
@@ -10,10 +11,13 @@ class ShowSymptomsPage:
         self.ui = Ui_showSymptomsPage()
         self.ui.setupUi(self.widget)
     
-    def update_listings(self):
+    def update_listings(self, date:str=None):
         self.delete_lisings()
+
+        if date == None:
+            date = datetime.today().strftime('%m/%d/%Y')
         
-        for symptom in SymptomTimes.fetch():
+        for symptom in SymptomTimes.fetch_by_date(date):
             symptom_listing = SymptomListing(symptom=symptom[0], severity=str(symptom[1]), date=symptom[2], time=symptom[3])
             self.ui.verticalLayout.addWidget(symptom_listing.widget)
 
