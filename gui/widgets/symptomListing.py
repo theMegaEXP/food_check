@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QMenu
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QDate
 
 from gui.designer.Ui_symptomListing import Ui_symptomListing
 from models.symptomTimes import SymptomTimes
@@ -38,4 +38,5 @@ class SymptomListing:
             print("update")
         elif action == delete_action:
             SymptomTimes.delete(self.id)
-            self.p.update_listings()
+            print("Deleted symptom " + str(self.id))
+            self.p.update_listings(self.kwargs['date'])
