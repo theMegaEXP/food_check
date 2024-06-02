@@ -38,12 +38,12 @@ class SymptomListing:
 
         if action == update_action:
             mw = self.p.p.mw
+            mw.page_connect_add_symptom()
+
             mw.add_symptom_page.ui.symptomInput.setCurrentText(self.ui.symptomLabel.text())
             mw.add_symptom_page.ui.severityInput.setValue(int(self.ui.severityLabel.text()))
             mw.add_symptom_page.ui.dateInput.setDate(Time.strDate_widgetDate(self.ui.dateLabel.text()))
             mw.add_symptom_page.ui.timeInput.setTime(Time.strTime_widgetTime(self.ui.timeLabel.text()))
-
-            mw.page_connect_add_symptom()
 
         elif action == delete_action:
             SymptomTimes.delete(self.id)
