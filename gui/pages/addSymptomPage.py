@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import QDate, QTime, QObject
 
 from gui.designer.Ui_addSymptomPage import Ui_addSymptomPage
+from gui.widgets.backButton import BackButton
 from models.symptomsAvailable import SymptomsAvailable
 from models.symptomTimes import SymptomTimes
 
@@ -13,6 +14,7 @@ class AddSymptomPage():
         self.ui.setupUi(self.widget)
 
         self.form_setup()
+        self.widget_setup()
 
     def form_setup(self):
         self.update_symptom_input()
@@ -23,6 +25,9 @@ class AddSymptomPage():
         self.ui.timeInput.setTime(QTime.currentTime())
 
         self.ui.submit.clicked.connect(lambda: self.submit())
+
+    def widget_setup(self):
+        self.ui.mainLayout.insertWidget(0, BackButton(self.mw))
 
     def submit(self):
         symptom = self.ui.symptomInput.currentText()
