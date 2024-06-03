@@ -20,11 +20,9 @@ class ShowFoodsPage:
         if date == None:
             date = datetime.today().strftime('%m/%d/%Y')
 
-        Foods.fetch_by_date(date)
-        
-        # for food in Foods.fetch_by_date(date):
-        #     food_listing = FoodListing(self, symptom=food[0], severity=str(food[1]), date=food[2], time=food[3], id=food[4])
-        #     self.ui.verticalLayout.addWidget(food_listing.widget)
+        for food in Foods.fetch_by_date(date):
+            food_listing = FoodListing(self, food)
+            self.ui.verticalLayout.addWidget(food_listing.widget)
 
         self.ui.verticalLayout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
         
