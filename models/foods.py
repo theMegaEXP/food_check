@@ -64,13 +64,49 @@ class Foods:
         pass
 
     
-    def fetch_by_date(date: str, return_id:bool=False):
+    def fetch_by_date(date: str):
         try:
             datetime.strptime(date, '%m/%d/%Y')
         except ValueError:
             raise ValueError
 
-        return DB.Query.query_print("SELECT products.product, products.barcode product_times.date, product_times.time FROM products JOIN symptom_times ON prodeucts.id = symptom_times.product_id")
+        query = """
+                SELECT products.product, products.barcode, product_times.date, product_times.time , products.id
+                FROM products 
+                JOIN product_times ON products.id = product_times.product_id
+                """
+        product_results = DB.Query.query_results(query)
+
+        dictArr = []
+        for product in product_results:
+            dict = {
+                'product': '',
+                'barcode': '',
+                'date': '',
+                'time': '',
+                'ingredients': [],
+                'product_id': 0,
+            }   
+            
+            dict['product'] = product[0]
+            dict['barcode'] = product[1]
+            dict['date'] = product[2]
+            dict['time'] = product[3]
+            dict['product_id'] = product[4]
+            
+            query = f"""
+                    SELECT ingredient.ingredients
+                    FROM products
+                    JOIN product_ingredients ON products.id = product_ingredients.product_id
+                    JOIN ingredients ON product_ingredients.product_id = product_ingredients.ingredient_id
+                    WHERE products.id = {dict['product_id']}
+                    """
+            ingredient_results = DB.Query.query_results(query)
+            dict['ingredients'] = [ingredient[0] for ingredient in ingredient_results]
+            dictArr.append(dict)
+
+        print(dictArr)
+
 
     def factory(amount):
         for i in range(amount):
