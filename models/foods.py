@@ -1,4 +1,5 @@
 from database.db import DB
+from database.generate import Generate
 from time_helpers import Time
 
 # Tables involved
@@ -59,6 +60,16 @@ class Foods:
 
     def fetch():
         pass
+
+    def factory(amount):
+        print("factory method called")
+        for i in range(amount):
+            barcode = Generate.barcode()
+            ingredients = Generate.ingredients()
+            date = Generate.date()
+            time = Generate.time()
+
+            Foods.store(product='', barcode=barcode, ingredients=ingredients, date=date, time=time)
 
     # def check_barcode(self, barcode):
     #     return any(d.get('barcode') == barcode for d in self.data)
