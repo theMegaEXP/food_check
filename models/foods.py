@@ -14,13 +14,19 @@ class Foods:
     def store(**data):
         product_provided = False
         
-        
-        if data['barcode'] and data['product']: 
+        if data['barcode'] or data['product']: 
             product_provided = True
-            
+
             # Insert into products table
-            if not DB.Query.value_exists('products', 'product', data['product']) and not DB.Query.value_exists('products', 'barcode', data['barcode']):
-                DB.Query.insert_into('proudcts', ['proudct', 'barcode'], [data['product'], data['barcode']])
+            if data['barcode'] and data['product']:
+                if not DB.Query.value_exists('products', 'product', data['product']) and not DB.Query.value_exists('products', 'barcode', data['barcode']):
+                    DB.Query.insert_into('proudcts', ['proudct', 'barcode'], [data['product'], data['barcode']])
+            elif data['barcode']:
+                if not DB.Query.value_exists('products', 'product', data['product']):
+                    DB.Query.insert_into('proudcts', ['proudct'], [data['barcode']])
+            elif data['products']:
+                if not DB.Query.value_exists('barcode', 'products', data['product']):
+                    DB.Query.insert_into('products', ['product'], [data['barcode']])
 
             # Insert into product_times table
             product_id = DB.Query.fetch_id('products', 'barcode', data['barcode']) or DB.Query.fetch_id('products', 'product', data['product'])
