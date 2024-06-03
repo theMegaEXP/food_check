@@ -99,7 +99,7 @@ class Foods:
                     SELECT ingredients.ingredient
                     FROM products
                     JOIN product_ingredients ON products.id = product_ingredients.product_id
-                    JOIN ingredients ON product_ingredients.product_id = product_ingredients.ingredient_id
+                    JOIN ingredients ON product_ingredients.ingredient_id = ingredients.id
                     WHERE products.id = {dict['product_id']}
                     """
             ingredient_results = DB.Query.query_results(query)
