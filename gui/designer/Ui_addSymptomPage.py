@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_addSymptomPage(object):
     def setupUi(self, addSymptomPage):
         addSymptomPage.setObjectName("addSymptomPage")
-        addSymptomPage.resize(310, 223)
-        self.verticalLayout = QtWidgets.QVBoxLayout(addSymptomPage)
-        self.verticalLayout.setObjectName("verticalLayout")
+        addSymptomPage.resize(344, 223)
+        self.mainLayout = QtWidgets.QVBoxLayout(addSymptomPage)
+        self.mainLayout.setObjectName("mainLayout")
         self.label_2 = QtWidgets.QLabel(addSymptomPage)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -25,7 +25,7 @@ class Ui_addSymptomPage(object):
         font.setWeight(50)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
-        self.verticalLayout.addWidget(self.label_2)
+        self.mainLayout.addWidget(self.label_2)
         self.formLayout_3 = QtWidgets.QFormLayout()
         self.formLayout_3.setObjectName("formLayout_3")
         self.symptomLabel = QtWidgets.QLabel(addSymptomPage)
@@ -102,7 +102,7 @@ class Ui_addSymptomPage(object):
         self.addSymptomBtn.setObjectName("addSymptomBtn")
         self.horizontalLayout.addWidget(self.addSymptomBtn)
         self.formLayout_3.setLayout(0, QtWidgets.QFormLayout.FieldRole, self.horizontalLayout)
-        self.verticalLayout.addLayout(self.formLayout_3)
+        self.mainLayout.addLayout(self.formLayout_3)
 
         self.retranslateUi(addSymptomPage)
         QtCore.QMetaObject.connectSlotsByName(addSymptomPage)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'barcodePage.ui'
+# Form implementation generated from reading ui file 'BarcodePage.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -15,8 +15,8 @@ class Ui_barcodePage(object):
     def setupUi(self, barcodePage):
         barcodePage.setObjectName("barcodePage")
         barcodePage.resize(271, 315)
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(barcodePage)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.mainLayout = QtWidgets.QVBoxLayout(barcodePage)
+        self.mainLayout.setObjectName("mainLayout")
         self.label = QtWidgets.QLabel(barcodePage)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -25,7 +25,7 @@ class Ui_barcodePage(object):
         font.setWeight(50)
         self.label.setFont(font)
         self.label.setObjectName("label")
-        self.verticalLayout_2.addWidget(self.label)
+        self.mainLayout.addWidget(self.label)
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.barcodeTitle = QtWidgets.QLabel(barcodePage)
@@ -65,8 +65,8 @@ class Ui_barcodePage(object):
         self.verticalLayout.addWidget(self.errorMsg)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
-        self.verticalLayout_2.addLayout(self.verticalLayout)
-        self.verticalLayout_2.setStretch(1, 1)
+        self.mainLayout.addLayout(self.verticalLayout)
+        self.mainLayout.setStretch(1, 1)
 
         self.retranslateUi(barcodePage)
         QtCore.QMetaObject.connectSlotsByName(barcodePage)

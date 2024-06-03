@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_addFoodPage(object):
     def setupUi(self, addFoodPage):
         addFoodPage.setObjectName("addFoodPage")
-        addFoodPage.resize(321, 483)
-        self.verticalLayout = QtWidgets.QVBoxLayout(addFoodPage)
-        self.verticalLayout.setObjectName("verticalLayout")
+        addFoodPage.resize(280, 228)
+        self.mainLayout = QtWidgets.QVBoxLayout(addFoodPage)
+        self.mainLayout.setObjectName("mainLayout")
         self.formLayout = QtWidgets.QFormLayout()
         self.formLayout.setObjectName("formLayout")
         self.productlabel = QtWidgets.QLabel(addFoodPage)
@@ -84,7 +84,7 @@ class Ui_addFoodPage(object):
         self.ingredientsLabel.setFont(font)
         self.ingredientsLabel.setObjectName("ingredientsLabel")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.ingredientsLabel)
-        self.verticalLayout.addLayout(self.formLayout)
+        self.mainLayout.addLayout(self.formLayout)
 
         self.retranslateUi(addFoodPage)
         QtCore.QMetaObject.connectSlotsByName(addFoodPage)
