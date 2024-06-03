@@ -14,9 +14,13 @@ class BarcodePage:
         self.ui.errorMsg.setVisible(False)
 
         self.form_setup()
+        self.widget_setup()
 
     def form_setup(self):
         self.ui.submit.clicked.connect(lambda: self.submit())
+
+    def widget_setup(self):
+        self.ui.mainLayout.insertWidget(0, BackButton(self.mw))
 
     def submit(self):
         text = self.ui.barcodeInput.text()
