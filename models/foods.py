@@ -70,10 +70,11 @@ class Foods:
         except ValueError:
             raise ValueError
 
-        query = """
+        query = f"""
                 SELECT products.product, products.barcode, product_times.date, product_times.time , products.id
                 FROM products 
                 JOIN product_times ON products.id = product_times.product_id
+                WHERE product_times.date = '{date}'
                 """
         product_results = DB.Query.query_results(query)
 
@@ -95,7 +96,7 @@ class Foods:
             dict['product_id'] = product[4]
             
             query = f"""
-                    SELECT ingredient.ingredients
+                    SELECT ingredients.ingredient
                     FROM products
                     JOIN product_ingredients ON products.id = product_ingredients.product_id
                     JOIN ingredients ON product_ingredients.product_id = product_ingredients.ingredient_id
@@ -105,7 +106,9 @@ class Foods:
             dict['ingredients'] = [ingredient[0] for ingredient in ingredient_results]
             dictArr.append(dict)
 
+        print(date)
         print(dictArr)
+        return dictArr
 
 
     def factory(amount):
