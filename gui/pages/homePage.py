@@ -40,5 +40,5 @@ class HomePage:
         self.ui.dateEdit.dateChanged.connect(lambda: self.update_pages())
 
     def update_pages(self):
-        #self.show_foods_page.update_listings()
+        self.show_foods_page.update_listings(self.ui.dateEdit.text())
         self.show_symptoms_page.update_listings(self.ui.dateEdit.text())

@@ -106,8 +106,6 @@ class Foods:
             dict['ingredients'] = [ingredient[0] for ingredient in ingredient_results]
             dictArr.append(dict)
 
-        print(date)
-        print(dictArr)
         return dictArr
 
 
