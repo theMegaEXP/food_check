@@ -44,6 +44,7 @@ class AddFoodPage:
         time = self.ui.timeInput.text()
 
         Foods.store(product=product, barcode=barcode, ingredients=ingredients, date=date, time=time)
+        self.mw.page_connect_home()
 
     def reset(self):
         self.ui.productInput.setText('')
