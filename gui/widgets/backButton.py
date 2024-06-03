@@ -1,15 +1,19 @@
-from PyQt5.QtWidgets import QWidget, QPushButton
+from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout
 
 class BackButton(QWidget):
-    def __init__(self, main_window):
+    def __init__(self, parent):
         super().__init__()
 
-        self.mw = main_window
+        self.p = parent
 
         self.button = QPushButton("Back", self)
         self.button.clicked.connect(self.back)
-        self.button.setStyleSheet("color: blue;")
+        self.button.setStyleSheet("color: blue; background: none;")
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.button)
+        self.setLayout(layout)
 
     def back(self):
-        self.mw.page_connect_home()
+        self.p.mw.page_connect_home()
         

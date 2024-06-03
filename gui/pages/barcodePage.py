@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QWidget
 
 from gui.designer.Ui_barcodePage import Ui_barcodePage
+from gui.widgets.backButton import BackButton
 #from data.barcode_search import get_product_ingredients
 
 class BarcodePage:
