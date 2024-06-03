@@ -16,20 +16,23 @@ class Foods:
         
         if data['barcode'] or data['product']: 
             product_provided = True
+            product_id: int
 
             # Insert into products table
             if data['barcode'] and data['product']:
                 if not DB.Query.value_exists('products', 'product', data['product']) and not DB.Query.value_exists('products', 'barcode', data['barcode']):
                     DB.Query.insert_into('products', ['product', 'barcode'], [data['product'], data['barcode']])
+                    product_id = DB.Query.fetch_id('products', 'barcode', data['barcode'])
             elif data['barcode']:
-                if not DB.Query.value_exists('products', 'product', data['product']):
-                    DB.Query.insert_into('products', ['product'], [data['barcode']])
-            elif data['products']:
-                if not DB.Query.value_exists('barcode', 'products', data['product']):
-                    DB.Query.insert_into('products', ['product'], [data['barcode']])
+                if not DB.Query.value_exists('products', 'barcode', data['barcode']):
+                    DB.Query.insert_into('products', ['barcode'], [data['barcode']])
+                    product_id = DB.Query.fetch_id('products', 'barcode', data['barcode'])
+            elif data['product']:
+                if not DB.Query.value_exists('products', 'barcode', data['product']):
+                    DB.Query.insert_into('products', ['product'], [data['product']])
+                    product_id = DB.Query.fetch_id('products', 'product', data['product'])
 
             # Insert into product_times table
-            product_id = DB.Query.fetch_id('products', 'barcode', data['barcode']) or DB.Query.fetch_id('products', 'product', data['product'])
             DB.Query.insert_into('product_times', ['product_id', 'date', 'time', 'datetime'], [product_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
             
         for ingredient in data['ingredients']:
@@ -40,10 +43,9 @@ class Foods:
 
             # Insert into product_ingredients table
             if product_provided:
-                product_id = DB.Query.fetch_id('products', 'barcode', data['barcode']) or DB.Query.fetch_id('products', 'product', data['product'])
                 ingredient_id = DB.Query.fetch_id('ingredients', 'ingredient', ingredient)
-                print(product_id, ingredient_id)
-                DB.Query.insert_into('product_ingredients', ['product_id', 'ingredient_id'], [product_id, ingredient_id])
+                if not DB.Query.composite_key_exists('product_ingredients', 'product_id', product_id, 'ingredient_id', ingredient_id):
+                    DB.Query.insert_into('product_ingredients', ['product_id', 'ingredient_id'], [product_id, ingredient_id])
 
             # Insert into ingredient_times table
             ingredient_id = DB.Query.fetch_id('ingredients', 'ingredient', ingredient)
