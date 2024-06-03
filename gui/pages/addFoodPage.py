@@ -16,9 +16,8 @@ class AddFoodPage:
         self.widget_setup()
 
     def form_setup(self):
-        self.ui.addBtn.clicked.connect(lambda: self.add_ingredient_input())
-        self.ui.dateInput.setDate(QDate.currentDate())
-        self.ui.timeInput.setTime(QTime.currentTime())
+        self.reset()
+        self.ui.addBtn.clicked.connect(lambda: self.add_ingredient_input())      
 
     def widget_setup(self):
         self.ui.mainLayout.insertWidget(0, BackButton(self.mw))
@@ -26,3 +25,14 @@ class AddFoodPage:
     def add_ingredient_input(self):
         add_ingredient = ItemInput(self)
         self.ui.ingredientInputs.addWidget(add_ingredient.widget)
+
+    def reset(self):
+        self.ui.productInput.setText('')
+        self.ui.barcodeInput.setText('')
+        self.ui.dateInput.setDate(QDate.currentDate())
+        self.ui.timeInput.setTime(QTime.currentTime())
+
+        while self.ui.ingredientInputs.count():
+            widget = self.ui.ingredientInputs.takeAt(0).widget()
+            if widget is not None:
+                widget.deleteLater()

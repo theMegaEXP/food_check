@@ -45,6 +45,7 @@ class MainWindow:
         self.page_connect(self.add_symptom_page.widget)
 
     def page_connect_add_food(self):
+        self.add_food_page.reset()
         self.page_connect(self.add_food_page.widget)
 
     def page_connect_barcode(self):
