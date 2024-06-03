@@ -14,13 +14,13 @@ class Generate:
         return [ingredients[random.randint(0, len(ingredients) - 1)] for _ in range(length)]
     
     def date():
-        return datetime.today().strftime('%m-%d-%Y')
+        return datetime.today().strftime('%m/%d/%Y')
     
     def time():
         hour = str(random.randint(1, 12))
         minute = str(random.randint(0, 11) * 5).zfill(2)
         ampm = 'AM' if random.randint(0, 1) == 0 else 'PM'
-        time_str = f"{hour}:{minute}{ampm}"
+        time_str = f"{hour}:{minute} {ampm}"
         return time_str
     
     def symptom():
