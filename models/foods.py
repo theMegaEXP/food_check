@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from database.db import DB
 from database.generate import Generate
 from time_helpers import Time
@@ -60,6 +62,15 @@ class Foods:
 
     def fetch():
         pass
+
+    
+    def fetch_by_date(date: str, return_id:bool=False):
+        try:
+            datetime.strptime(date, '%m/%d/%Y')
+        except ValueError:
+            raise ValueError
+
+        return DB.Query.query_print("SELECT products.product, products.barcode product_times.date, product_times.time FROM products JOIN symptom_times ON prodeucts.id = symptom_times.product_id")
 
     def factory(amount):
         for i in range(amount):
