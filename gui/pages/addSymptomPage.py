@@ -17,13 +17,8 @@ class AddSymptomPage():
         self.widget_setup()
 
     def form_setup(self):
-        self.update_symptom_input()
-        
+        self.reset()
         self.ui.addSymptomBtn.clicked.connect(lambda: self.mw.page_connect_symptoms())
-
-        self.ui.dateInput.setDate(QDate.currentDate())
-        self.ui.timeInput.setTime(QTime.currentTime())
-
         self.ui.submit.clicked.connect(lambda: self.submit())
 
     def widget_setup(self):
@@ -38,7 +33,10 @@ class AddSymptomPage():
         SymptomTimes.store(symptom=symptom, severity=severity, date=date, time=time)
         self.mw.page_connect_home()
 
-    def update_symptom_input(self):
+    def reset(self):
         self.ui.symptomInput.clear()
         self.ui.symptomInput.addItems([symptom[0] for symptom in SymptomsAvailable.fetch()])
+        self.ui.severityInput.setValue(1)
+        self.ui.dateInput.setDate(QDate.currentDate())
+        self.ui.timeInput.setTime(QTime.currentTime())
         

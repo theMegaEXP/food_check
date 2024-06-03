@@ -41,7 +41,7 @@ class MainWindow:
         self.page_connect(self.home_page.widget)
 
     def page_connect_add_symptom(self):
-        self.add_symptom_page.update_symptom_input()
+        self.add_symptom_page.reset()
         self.page_connect(self.add_symptom_page.widget)
 
     def page_connect_add_food(self):
