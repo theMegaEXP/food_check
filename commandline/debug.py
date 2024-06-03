@@ -50,13 +50,13 @@ def debug():
             except Exception:
                 Print.red(f"Table {table_name} does not exist.")
 
-        elif re.search(r'^add [a-zA-Z]+ (?:[1-9]|[1-4][0-9]|50)', query_input):
+        elif re.search(r'^add [a-zA-Z]+ [0-9]+', query_input):
 
             try:
-                classname = globals[query_input.split(' ')[1]]
+                classname = globals()[query_input.split(' ')[1]]
                 amount = int(query_input.split(' ')[2])
 
-                if 0 < amount >= 50:
+                if 0 < amount <= 50:
                     classname.factory(amount)
                 else:
                     Print.red("The amount provided must be beetween 1-50")
