@@ -28,18 +28,18 @@ class AddFoodPage:
         add_ingredient = ItemInput(self)
         self.ui.ingredientInputs.addWidget(add_ingredient.widget)
 
-    def retrieveIngrediens(self):
-        return ', '.join([
+    def retrieve_ingrediens(self):
+        return [
             widget.findChild(QLineEdit, "input").text()
             for i in range(self.ui.ingredientInputs.count())
             if isinstance((widget := self.ui.ingredientInputs.itemAt(i).widget()), QWidget)
             and (widget.findChild(QLineEdit, "input").text()) != ''
-        ])
+        ]
 
     def submit(self):
         product = self.ui.productInput.text()
         barcode = self.ui.barcodeInput.text()
-        ingredients = self.retrieveIngrediens()
+        ingredients = self.retrieve_ingrediens()
         date = self.ui.dateInput.text()
         time = self.ui.timeInput.text()
 
