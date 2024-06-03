@@ -62,7 +62,6 @@ class Foods:
         pass
 
     def factory(amount):
-        print("factory method called")
         for i in range(amount):
             barcode = Generate.barcode()
             ingredients = Generate.ingredients()

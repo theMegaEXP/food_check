@@ -57,7 +57,9 @@ def debug():
                 amount = int(query_input.split(' ')[2])
 
                 if 0 < amount <= 50:
+                    Print.blue("Inserting data...")
                     classname.factory(amount)
+                    Print.green("Data inserted.")
                 else:
                     Print.red("The amount provided must be beetween 1-50")
             except Exception:
