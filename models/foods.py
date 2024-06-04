@@ -125,24 +125,28 @@ class Foods:
         product_results = DB.Query.query_results(query)
         
         for product in product_results: 
+            #product[0] = datetime
+            #product[1] = time
+            #product[2] = datetime
+            
             query = f"""
                     SELECT ingredients.ingredient
                     FROM ingredients
                     JOIN ingredient_times ON ingredients.id = ingredient_times.ingredient_id
-                    WHERE ingredient_times.datetime = {product['datetime']}
+                    WHERE ingredient_times.datetime = '{product[2]}'
                     """
             ingredient_results = DB.Query.query_results(query)
 
             dict = {
                 'product': '',
                 'barcode': '',
-                'date': product['date'],
-                'time': product['time'],
+                'date': product[0],
+                'time': product[1],
                 'ingredients': [ingredient[0] for ingredient in ingredient_results],
                 'product_id': None,
             }
-
-
+            dictArr.append(dict)
+            
         return dictArr
 
 
