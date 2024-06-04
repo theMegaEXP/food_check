@@ -58,15 +58,15 @@ class Foods:
         pass
 
     def delete(product_id: int, date: str, time: str):
-        if id == None:
+        if product_id == None:
             pass
         else:
             # Delete ingredients
             query = f"""
                     DELETE FROM ingredient_times
-                    WHERE id IN (SELECT ingredient_id FROM product_ingredients WHERE product_id = {product_id})
+                    WHERE ingredient_id IN (SELECT ingredient_id FROM product_ingredients WHERE product_id = {product_id})
                     """
-            DB.Query.query_results(query)
+            DB.Query.query_operation(query)
 
             # Delete from product_times table
             DB.Query.delete_by_column('product_times', 'product_id', product_id)
@@ -75,7 +75,7 @@ class Foods:
             DB.Query.delete_by_column('product_ingredients', 'product_id', product_id)
             
             # Delete from products table
-            DB.Query.delete_by_column('proudcts', 'id', product_id)
+            DB.Query.delete_by_column('products', 'id', product_id)
 
     def fetch():
         pass
