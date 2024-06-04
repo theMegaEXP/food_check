@@ -75,6 +75,7 @@ class Foods:
                 FROM products 
                 JOIN product_times ON products.id = product_times.product_id
                 WHERE product_times.date = '{date}'
+                ORDER BY product_times.datetime
                 """
         product_results = DB.Query.query_results(query)
 
