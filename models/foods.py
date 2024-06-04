@@ -10,7 +10,7 @@ from time_helpers import Time
 # products
 # product_ingredients
 # product_times
-# symptom_times
+# ingredient_times
 
 
 class Foods:
@@ -57,8 +57,25 @@ class Foods:
     def update():
         pass
 
-    def delete():
-        pass
+    def delete(product_id: int, date: str, time: str):
+        if id == None:
+            pass
+        else:
+            # Delete ingredients
+            query = f"""
+                    DELETE FROM ingredient_times
+                    WHERE id IN (SELECT ingredient_id FROM product_ingredients WHERE product_id = {product_id})
+                    """
+            DB.Query.query_results(query)
+
+            # Delete from product_times table
+            DB.Query.delete_by_column('product_times', 'product_id', product_id)
+
+            # Delete from product_ingredients table
+            DB.Query.delete_by_column('product_ingredients', 'product_id', product_id)
+            
+            # Delete from products table
+            DB.Query.delete_by_column('proudcts', 'id', product_id)
 
     def fetch():
         pass

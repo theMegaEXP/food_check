@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget, QMenu
 from PyQt5.QtCore import Qt
 
 from gui.designer.Ui_foodListing import Ui_foodListing
+from models.foods import Foods
 
 class FoodListing:
     def __init__(self, parent, food: dict):
@@ -40,5 +41,7 @@ class FoodListing:
         print("update")
 
     def delete(self):
-        print("delete")
+        Foods.delete(self.food['product_id'], self.food['date'], self.food['time'])
+        print("Food item deleted.")
+        
     
