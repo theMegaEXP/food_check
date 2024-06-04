@@ -84,19 +84,13 @@ class Foods:
         dictArr = []
         for product in product_results:
             dict = {
-                'product': '',
-                'barcode': '',
-                'date': '',
-                'time': '',
+                'product': product[0],
+                'barcode': product[1],
+                'date': product[2],
+                'time': product[3],
                 'ingredients': [],
-                'product_id': 0,
-            }   
-            
-            dict['product'] = product[0]
-            dict['barcode'] = product[1]
-            dict['date'] = product[2]
-            dict['time'] = product[3]
-            dict['product_id'] = product[4]
+                'product_id': product[4],
+            }
             
             query = f"""
                     SELECT ingredients.ingredient
