@@ -121,12 +121,27 @@ class Foods:
                         WHERE product_ingredients.ingredient_id = ingredient_times.ingredient_id
                             AND ingredient_times.datetime = product_times.datetime
                     )
-                    
                 """
         product_results = DB.Query.query_results(query)
         
-        for product in product_results:
-            pass
+        for product in product_results: 
+            query = f"""
+                    SELECT ingredients.ingredient
+                    FROM ingredients
+                    JOIN ingredient_times ON ingredients.id = ingredient_times.ingredient_id
+                    WHERE ingredient_times.datetime = {product['datetime']}
+                    """
+            ingredient_results = DB.Query.query_results(query)
+
+            dict = {
+                'product': '',
+                'barcode': '',
+                'date': product['date'],
+                'time': product['time'],
+                'ingredients': [ingredient[0] for ingredient in ingredient_results],
+                'product_id': None,
+            }
+
 
         return dictArr
 
