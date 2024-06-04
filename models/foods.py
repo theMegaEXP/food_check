@@ -124,7 +124,7 @@ class Foods:
             #product[2] = datetime
             
             query = f"""
-                    SELECT ingredients.ingredient
+                    SELECT DISTINCT ingredients.ingredient
                     FROM ingredients
                     JOIN ingredient_times ON ingredients.id = ingredient_times.ingredient_id
                     WHERE ingredient_times.datetime = '{product[2]}'
