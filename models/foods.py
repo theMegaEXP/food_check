@@ -65,11 +65,13 @@ class Foods:
 
     
     def fetch_by_date(date: str):
+        # check date format
         try:
             datetime.strptime(date, '%m/%d/%Y')
         except ValueError:
             raise ValueError
 
+        # get product info and ingredients
         query = f"""
                 SELECT products.product, products.barcode, product_times.date, product_times.time , products.id
                 FROM products 
@@ -106,6 +108,25 @@ class Foods:
             ingredient_results = DB.Query.query_results(query)
             dict['ingredients'] = [ingredient[0] for ingredient in ingredient_results]
             dictArr.append(dict)
+
+        # get ingredient info when there is no product
+        query = f"""
+                SELECT DISTINCT ingredient_times.date, ingredient_times.time, ingredient_times.datetime
+                FROM ingredient_times
+                WHERE ingredient_times.date = '{date}'
+                    AND NOT EXISTS (
+                        SELECT 1
+                        FROM product_times
+                        JOIN product_ingredients ON product_times.product_id = product_ingredients.product_id
+                        WHERE product_ingredients.ingredient_id = ingredient_times.ingredient_id
+                            AND ingredient_times.datetime = product_times.datetime
+                    )
+                    
+                """
+        product_results = DB.Query.query_results(query)
+        
+        for product in product_results:
+            pass
 
         return dictArr
 
