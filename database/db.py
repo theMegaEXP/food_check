@@ -12,6 +12,10 @@ class DB:
         def query_results(query: str):
             c.execute(query)
             return c.fetchall()
+        
+        def query_operation(query: str):
+            c.execute(query)
+            conn.commit()
     
         def create_table(table: str, columns: list[str]):
             columns_str = ', '.join(columns)
