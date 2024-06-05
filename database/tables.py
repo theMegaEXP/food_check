@@ -23,7 +23,8 @@ class Tables:
                                                 'date TEXT NULL',
                                                 'time TEXT NULL',
                                                 'datetime TEXT',
-                                                'FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)'])
+                                                'FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)'
+                                                'FOREIGN KEY (product_id) REFERENCES products(id)'])
 
     def create_products_table():
         DB.Query.create_table('products', ['id INTEGER PRIMARY KEY', 
