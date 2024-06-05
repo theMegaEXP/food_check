@@ -84,7 +84,7 @@ class Foods:
 
         # get product info and ingredients
         query = f"""
-                SELECT DISTINCT products.product, products.barcode, product_ingredient_times.date, product_ingredient_times.time , products.id
+                SELECT DISTINCT products.product, products.barcode, product_ingredient_times.date, product_ingredient_times.time, product_ingredient_times.datetime, products.id
                 FROM products 
                 LEFT JOIN product_ingredient_times ON products.id = product_ingredient_times.product_id
                 WHERE product_ingredient_times.date = '{date}'
@@ -100,8 +100,9 @@ class Foods:
                 'barcode': product[1],
                 'date': product[2],
                 'time': product[3],
+                'datetime': product[4],
                 'ingredients': [],
-                'product_id': product[4],
+                'product_id': product[5],
             }
             
             query = f"""
