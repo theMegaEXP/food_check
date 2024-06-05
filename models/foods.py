@@ -51,22 +51,12 @@ class Foods:
     def update():
         pass
 
-    def delete(product_id: int, date: str, time: str):
+    def delete(product_id: int, datetime: str):
         if product_id == None:
             pass
         else:
-            # Delete ingredients
-            query = f"""
-                    DELETE FROM ingredient_times
-                    WHERE ingredient_id IN (SELECT ingredient_id FROM product_ingredients WHERE product_id = {product_id})
-                    """
-            DB.Query.query_operation(query)
-
-            # Delete from product_times table
-            DB.Query.delete_by_column('product_times', 'product_id', product_id)
-
-            # Delete from product_ingredients table
-            DB.Query.delete_by_column('product_ingredients', 'product_id', product_id)
+            # Delete from product_ingredient_times table
+            DB.Query.delete_by_column('product_ingredient_times', 'product_id', product_id)
             
             # Delete from products table
             DB.Query.delete_by_column('products', 'id', product_id)
