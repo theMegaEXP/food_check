@@ -84,13 +84,14 @@ class Foods:
 
         # get product info and ingredients
         query = f"""
-                SELECT products.product, products.barcode, product_times.date, product_times.time , products.id
+                SELECT DISTINCT products.product, products.barcode, product_ingredient_times.date, product_ingredient_times.time , products.id
                 FROM products 
-                JOIN product_times ON products.id = product_times.product_id
-                WHERE product_times.date = '{date}'
-                ORDER BY product_times.datetime
+                LEFT JOIN product_ingredient_times ON products.id = product_ingredient_times.product_id
+                WHERE product_ingredient_times.date = '{date}'
+                ORDER BY product_ingredient_times.datetime
                 """
         product_results = DB.Query.query_results(query)
+        print(product_results)
 
         dictArr = []
         for product in product_results:
