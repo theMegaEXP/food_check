@@ -41,7 +41,7 @@ class FoodListing:
         print("update")
 
     def delete(self):
-        Foods.delete(self.food['product_id'], self.food['date'], self.food['time'])
+        Foods.delete(self.food['product_id'], self.food['datetime'])
         self.p.update_listings(self.food['date'])
         print("Food item deleted.")
         

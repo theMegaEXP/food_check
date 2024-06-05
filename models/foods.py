@@ -131,6 +131,7 @@ class Foods:
                 'barcode': '',
                 'date': product[0],
                 'time': product[1],
+                'datetime': product[2],
                 'ingredients': [ingredient[0] for ingredient in ingredient_results],
                 'product_id': None,
             }
