@@ -53,7 +53,7 @@ class Foods:
 
     def delete(product_id: int, datetime: str):
         if product_id == None:
-            pass
+            DB.Query.query_operation(f"DELETE FROM product_ingredient_times WHERE datetime = '{datetime}' AND product_id IS NULL")
         else:
             # Delete from product_ingredient_times table
             DB.Query.delete_by_column('product_ingredient_times', 'product_id', product_id)
