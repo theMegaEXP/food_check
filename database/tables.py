@@ -38,13 +38,6 @@ class Tables:
                                                 'datetime TEXT',
                                                 'FOREIGN KEY (product_id) REFERENCES products(id)'])
 
-    def create_product_ingredients_table():
-        DB.Query.create_table('product_ingredients', ['product_id INTEGER',
-                                                    'ingredient_id INTEGER',
-                                                    'FOREIGN KEY (product_id) REFERENCES products(id)',
-                                                    'FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)',
-                                                    'PRIMARY KEY (product_id, ingredient_id)'])
-
     def create_symptoms_table():
         DB.Query.create_table('symptoms', ['id INTEGER PRIMARY KEY', 
                                         'symptom TEXT UNIQUE'])
