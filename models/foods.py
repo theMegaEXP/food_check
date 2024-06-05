@@ -119,6 +119,7 @@ class Foods:
                 SELECT DISTINCT date, time, datetime
                 FROM product_ingredient_times
                 WHERE product_id IS NULL AND date = '{date}'
+                ORDER BY product_ingredient_times.datetime
                 """
         product_results = DB.Query.query_results(query)
         
@@ -130,7 +131,7 @@ class Foods:
             query = f"""
                     SELECT DISTINCT ingredients.ingredient
                     FROM ingredients
-                    JOIN ingredient_times ON ingredients.id = ingredient_times.ingredient_id
+                    JOIN product_ingredient_times ON ingredients.id = product_ingredient_times.ingredient_id
                     WHERE ingredient_times.datetime = '{product[2]}'
                     """
             ingredient_results = DB.Query.query_results(query)
