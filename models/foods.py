@@ -91,7 +91,6 @@ class Foods:
                 ORDER BY product_ingredient_times.datetime
                 """
         product_results = DB.Query.query_results(query)
-        print(product_results)
 
         dictArr = []
         for product in product_results:
@@ -107,10 +106,9 @@ class Foods:
             
             query = f"""
                     SELECT ingredients.ingredient
-                    FROM products
-                    JOIN product_ingredients ON products.id = product_ingredients.product_id
-                    JOIN ingredients ON product_ingredients.ingredient_id = ingredients.id
-                    WHERE products.id = {dict['product_id']}
+                    FROM product_ingredient_times
+                    JOIN ingredients ON product_ingredient_times.ingredient_id = ingredients.id
+                    WHERE product_ingredient_times.product_id = {dict['product_id']}
                     """
             ingredient_results = DB.Query.query_results(query)
             dict['ingredients'] = [ingredient[0] for ingredient in ingredient_results]
