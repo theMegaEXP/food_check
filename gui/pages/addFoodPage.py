@@ -5,6 +5,7 @@ from gui.designer.Ui_addFoodPage import Ui_addFoodPage
 from gui.widgets.itemInput import ItemInput
 from gui.widgets.backButton import BackButton
 from models.foods import Foods
+from time_helpers import Time
 
 class AddFoodPage:
     def __init__(self, main_window):
@@ -24,8 +25,8 @@ class AddFoodPage:
     def widget_setup(self):
         self.ui.mainLayout.insertWidget(0, BackButton(self.mw))
 
-    def add_ingredient_input(self):
-        add_ingredient = ItemInput(self)
+    def add_ingredient_input(self, text=''):
+        add_ingredient = ItemInput(self, text)
         self.ui.ingredientInputs.addWidget(add_ingredient.widget)
 
     def retrieve_ingrediens(self):
@@ -56,3 +57,12 @@ class AddFoodPage:
             widget = self.ui.ingredientInputs.takeAt(0).widget()
             if widget is not None:
                 widget.deleteLater()
+
+    def set_fields(self, fields):
+        self.ui.productInput.setText(fields['product'])
+        self.ui.barcodeInput.setText(fields['barcode'])
+        self.ui.dateInput.setDate(Time.strDate_widgetDate(fields['date']))
+        self.ui.timeInput.setTime(Time.strTime_widgetTime(fields['time']))
+
+        for ingredient in fields['ingredients'].split(', '):
+            self.add_ingredient_input(ingredient)

@@ -38,7 +38,18 @@ class FoodListing:
             self.delete()
 
     def update(self):
-        print("update")
+        mw = self.p.p.mw
+        mw.page_connect_add_food()
+
+        fields = {
+            'product': self.ui.productLabel.text(),
+            'barcode': self.ui.barcodeLabel.text(),
+            'ingredients': self.ui.ingredientsLabel.text(),
+            'date': self.ui.dateLabel.text(),
+            'time': self.ui.timeLabel.text()
+        }
+
+        mw.add_food_page.set_fields(fields)
 
     def delete(self):
         Foods.delete(self.food['product_id'], self.food['datetime'])

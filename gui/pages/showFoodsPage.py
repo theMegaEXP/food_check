@@ -6,7 +6,8 @@ from gui.widgets.foodListing import FoodListing
 from models.foods import Foods
 
 class ShowFoodsPage:
-    def __init__(self):
+    def __init__(self, parent):
+        self.p = parent
         self.widget = QWidget()
         self.ui = Ui_showFoodsPage()
         self.ui.setupUi(self.widget)

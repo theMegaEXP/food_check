@@ -18,7 +18,7 @@ class HomePage:
         self.update_pages()
 
     def page_setup(self):
-        self.show_foods_page = ShowFoodsPage()
+        self.show_foods_page = ShowFoodsPage(self)
         self.show_symptoms_page = ShowSymptomsPage(self)
         self.ui.stackedWidget.addWidget(self.show_foods_page.widget)
         self.ui.stackedWidget.addWidget(self.show_symptoms_page.widget)
