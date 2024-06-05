@@ -38,20 +38,24 @@ class AddFoodPage:
         ]
 
     def submit(self):
-        product = self.ui.productInput.text()
-        barcode = self.ui.barcodeInput.text()
-        ingredients = self.retrieve_ingrediens()
-        date = self.ui.dateInput.text()
-        time = self.ui.timeInput.text()
+        if not self.errors():
+            product = self.ui.productInput.text()
+            barcode = self.ui.barcodeInput.text()
+            ingredients = self.retrieve_ingrediens()
+            date = self.ui.dateInput.text()
+            time = self.ui.timeInput.text()
 
-        Foods.store(product=product, barcode=barcode, ingredients=ingredients, date=date, time=time)
-        self.mw.page_connect_home()
+            Foods.store(product=product, barcode=barcode, ingredients=ingredients, date=date, time=time)
+            self.mw.page_connect_home()
 
     def reset(self):
         self.ui.productInput.setText('')
         self.ui.barcodeInput.setText('')
         self.ui.dateInput.setDate(QDate.currentDate())
         self.ui.timeInput.setTime(QTime.currentTime())
+        
+        self.ui.errorMsg.hide()
+        self.ui.errorMsg.setText('')
 
         while self.ui.ingredientInputs.count():
             widget = self.ui.ingredientInputs.takeAt(0).widget()
@@ -66,3 +70,22 @@ class AddFoodPage:
 
         for ingredient in fields['ingredients'].split(', '):
             self.add_ingredient_input(ingredient)
+
+    def errors(self):
+        if len(self.ui.barcodeInput.text()) != 12:
+            self.ui.errorMsg.setText("The barcode must be 12 digits.")
+            self.ui.errorMsg.show()
+            return True
+
+        elif not self.ui.barcodeInput.text().isdigit():
+            self.ui.errorMsg.setText("The barocde must only contain digits.")
+            self.ui.errorMsg.show()
+            return True
+
+        elif self.ui.ingredientInputs.count() == 0:
+            self.ui.errorMsg.setText("You must add at least one ingredient.")
+            self.ui.errorMsg.show()
+            return True
+
+        return False
+            
