@@ -116,16 +116,9 @@ class Foods:
 
         # get ingredient info when there is no product
         query = f"""
-                SELECT DISTINCT ingredient_times.date, ingredient_times.time, ingredient_times.datetime
-                FROM ingredient_times
-                WHERE ingredient_times.date = '{date}'
-                    AND NOT EXISTS (
-                        SELECT 1
-                        FROM product_times
-                        JOIN product_ingredients ON product_times.product_id = product_ingredients.product_id
-                        WHERE product_ingredients.ingredient_id = ingredient_times.ingredient_id
-                            AND ingredient_times.datetime = product_times.datetime
-                    )
+                SELECT DISTINCT date, time, datetime
+                FROM product_ingredient_times
+                WHERE product_id IS NULL AND date = '{date}'
                 """
         product_results = DB.Query.query_results(query)
         
