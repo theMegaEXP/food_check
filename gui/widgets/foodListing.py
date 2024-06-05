@@ -28,14 +28,32 @@ class FoodListing:
 
     def show_context_menu(self, pos):
         context_menu = QMenu(self.widget)
+        new_action = context_menu.addAction("New")
+        new_action.setToolTip("Create a new listing from this entry.")
         update_action = context_menu.addAction("Update")
+        update_action.setToolTip("Update this entry.")
         delete_action = context_menu.addAction("Delete")
+        delete_action.setToolTip("Delete this entry.")
         action = context_menu.exec_(self.widget.mapToGlobal(pos))
         
-        if action == update_action:
+        if action == new_action:
+            self.new()
+        elif action == update_action:
             self.update()
         elif action == delete_action:
             self.delete()
+
+    def new(self):
+        mw = self.p.p.mw
+        mw.page_connect_add_food()
+
+        fields = {
+            'product': self.ui.productLabel.text(),
+            'barcode': self.ui.barcodeLabel.text(),
+            'ingredients': self.ui.ingredientsLabel.text()
+        }
+
+        mw.add_food_page.set_fields(fields)
 
     def update(self):
         mw = self.p.p.mw
@@ -55,5 +73,6 @@ class FoodListing:
         Foods.delete(self.food['product_id'], self.food['datetime'])
         self.p.update_listings(self.food['date'])
         print("Food item deleted.")
+
         
     
