@@ -16,8 +16,8 @@ class Tables:
         DB.Query.create_table('ingredients', ['id INTEGER PRIMARY KEY', 
                                             'ingredient TEXT UNIQUE'])
         
-    def create_ingredient_times_table():
-        DB.Query.create_table('ingredient_times', ['id INTEGER PRIMARY KEY',
+    def create_product_ingredient_times_table():
+        DB.Query.create_table('product_ingredient_times', ['id INTEGER PRIMARY KEY',
                                                 'ingredient_id INTEGER',
                                                 'product_id INTEGER NULL',
                                                 'date TEXT NULL',
