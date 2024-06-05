@@ -16,10 +16,10 @@ from time_helpers import Time
 class Foods:
     def store(**data):
         product_provided = False
+        product_id: int
         
         if data['barcode'] or data['product']: 
             product_provided = True
-            product_id: int
 
             # Insert into products table
             if data['barcode'] and data['product']:
@@ -34,9 +34,6 @@ class Foods:
                 if not DB.Query.value_exists('products', 'barcode', data['product']):
                     DB.Query.insert_into('products', ['product'], [data['product']])
                     product_id = DB.Query.fetch_id('products', 'product', data['product'])
-
-            # Insert into product_times table
-            DB.Query.insert_into('product_times', ['product_id', 'date', 'time', 'datetime'], [product_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
             
         for ingredient in data['ingredients']:
             
