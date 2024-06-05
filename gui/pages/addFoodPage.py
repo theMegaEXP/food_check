@@ -63,10 +63,13 @@ class AddFoodPage:
                 widget.deleteLater()
 
     def set_fields(self, fields):
-        self.ui.productInput.setText(fields['product'])
-        self.ui.barcodeInput.setText(fields['barcode'])
-        self.ui.dateInput.setDate(Time.strDate_widgetDate(fields['date']))
-        self.ui.timeInput.setTime(Time.strTime_widgetTime(fields['time']))
+        date = Time.strDate_widgetDate(fields.get('date')) if fields.get('date') is not None else QDate.currentDate()
+        time = Time.strTime_widgetTime(fields.get('time')) if fields.get('time') is not None else QTime.currentTime()
+
+        self.ui.productInput.setText(fields['product'] or '')
+        self.ui.barcodeInput.setText(fields['barcode'] or '')
+        self.ui.dateInput.setDate(date)
+        self.ui.timeInput.setTime(time)
 
         for ingredient in fields['ingredients'].split(', '):
             self.add_ingredient_input(ingredient)
