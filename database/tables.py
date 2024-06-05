@@ -19,7 +19,7 @@ class Tables:
     def create_ingredient_times_table():
         DB.Query.create_table('ingredient_times', ['id INTEGER PRIMARY KEY',
                                                 'ingredient_id INTEGER',
-                                                'product_id INTEGER NULL'
+                                                'product_id INTEGER NULL',
                                                 'date TEXT NULL',
                                                 'time TEXT NULL',
                                                 'datetime TEXT',
