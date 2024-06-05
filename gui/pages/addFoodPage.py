@@ -72,20 +72,30 @@ class AddFoodPage:
             self.add_ingredient_input(ingredient)
 
     def errors(self):
+        is_error = False
+
         if len(self.ui.barcodeInput.text()) != 12 and len(self.ui.barcodeInput.text()) > 0:
+            is_error = True
             self.ui.errorMsg.setText("The barcode must be 12 digits.")
-            self.ui.errorMsg.show()
-            return True
 
         elif not self.ui.barcodeInput.text().isdigit() and len(self.ui.barcodeInput.text()) > 0:
+            is_error = True
             self.ui.errorMsg.setText("The barocde must only contain digits.")
-            self.ui.errorMsg.show()
-            return True
 
         elif len(self.retrieve_ingrediens()) == 0:
+            is_error = True
             self.ui.errorMsg.setText("You must add at least one ingredient.")
-            self.ui.errorMsg.show()
-            return True
+        
+        elif Foods.product_exists(self.ui.productInput.text()):
+            is_error = True
+            self.ui.errorMsg.setText("This product name has already been used.")
 
-        return False
+        elif Foods.barcode_exists(self.ui.barcodeInput.text()):
+            is_error = True
+            self.ui.errorMsg.setText("This barcode name has alreayd been used.")
+
+        if is_error:
+            self.ui.errorMsg.show()
+
+        return is_error
             

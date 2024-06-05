@@ -149,6 +149,12 @@ class Foods:
 
             Foods.store(product='', barcode=barcode, ingredients=ingredients, date=date, time=time)
 
+    def product_exists(product):
+        DB.Query.value_exists('products', 'product', product)
+
+    def barcode_exists(barcode):
+        DB.Query.value_exists('products', 'barcode', barcode)
+
     # def check_barcode(self, barcode):
     #     return any(d.get('barcode') == barcode for d in self.data)
     
