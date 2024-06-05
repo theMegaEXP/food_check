@@ -72,17 +72,17 @@ class AddFoodPage:
             self.add_ingredient_input(ingredient)
 
     def errors(self):
-        if len(self.ui.barcodeInput.text()) != 12:
+        if len(self.ui.barcodeInput.text()) != 12 and len(self.ui.barcodeInput.text()) > 0:
             self.ui.errorMsg.setText("The barcode must be 12 digits.")
             self.ui.errorMsg.show()
             return True
 
-        elif not self.ui.barcodeInput.text().isdigit():
+        elif not self.ui.barcodeInput.text().isdigit() and len(self.ui.barcodeInput.text()) > 0:
             self.ui.errorMsg.setText("The barocde must only contain digits.")
             self.ui.errorMsg.show()
             return True
 
-        elif self.ui.ingredientInputs.count() == 0:
+        elif len(self.retrieve_ingrediens()) == 0:
             self.ui.errorMsg.setText("You must add at least one ingredient.")
             self.ui.errorMsg.show()
             return True
