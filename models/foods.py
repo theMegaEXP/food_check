@@ -44,15 +44,12 @@ class Foods:
             if not DB.Query.value_exists('ingredients', 'ingredient', ingredient):
                 DB.Query.insert_into('ingredients', ['ingredient'], [ingredient])
 
-            # Insert into product_ingredients table
-            if product_provided:
-                ingredient_id = DB.Query.fetch_id('ingredients', 'ingredient', ingredient)
-                if not DB.Query.composite_key_exists('product_ingredients', 'product_id', product_id, 'ingredient_id', ingredient_id):
-                    DB.Query.insert_into('product_ingredients', ['product_id', 'ingredient_id'], [product_id, ingredient_id])
-
             # Insert into ingredient_times table
             ingredient_id = DB.Query.fetch_id('ingredients', 'ingredient', ingredient)
-            DB.Query.insert_into('ingredient_times', ['ingredient_id', 'date', 'time', 'datetime'], [ingredient_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
+            if product_provided:
+                DB.Query.insert_into('ingredient_times', ['ingredient_id', 'product_id', 'date', 'time', 'datetime'], [ingredient_id, product_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
+            else:
+                DB.Query.insert_into('ingredient_times', ['ingredient_id', 'date', 'time', 'datetime'], [ingredient_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
 
     def update():
         pass
