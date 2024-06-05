@@ -132,7 +132,7 @@ class Foods:
                     SELECT DISTINCT ingredients.ingredient
                     FROM ingredients
                     JOIN product_ingredient_times ON ingredients.id = product_ingredient_times.ingredient_id
-                    WHERE ingredient_times.datetime = '{product[2]}'
+                    WHERE product_ingredient_times.datetime = '{product[2]}'
                     """
             ingredient_results = DB.Query.query_results(query)
 
