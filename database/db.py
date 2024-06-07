@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-
 from database.init import cursor as c, conn
 from commandline.print import Print
 
