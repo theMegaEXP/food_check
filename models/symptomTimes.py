@@ -3,6 +3,7 @@ from datetime import datetime
 from database.db import DB
 from database.tables import Tables
 from time_helpers import Time
+from database.generate import Generate
 
 class SymptomTimes:
     def store(**data):
@@ -27,6 +28,14 @@ class SymptomTimes:
 
         return DB.Query.query_results(f"SELECT symptom, severity, date, time{', symptom_times.id' if return_id else ''} FROM symptom_times JOIN symptoms ON symptom_times.symptom_id = symptoms.id WHERE date = '{date}' ORDER BY datetime")
     
+    def factory(amount):
+        for i in range(amount):
+            symptom = Generate.symptom()
+            date = Generate.date()
+            time = Generate.time()
+
+            SymptomTimes.store(symptom=symptom, date=date, time=time)
+
     def reset():
         DB.Query.drop_table('symptom_times')
         Tables.create_symptom_times_table()
