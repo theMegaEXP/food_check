@@ -30,15 +30,30 @@ class SymptomListing:
 
     def show_context_menu(self, pos):
         context_menu = QMenu(self.widget)
+        new_action = context_menu.addAction("New")
         update_action = context_menu.addAction("Update")
         delete_action = context_menu.addAction("Delete")
         action = context_menu.exec_(self.widget.mapToGlobal(pos))
+
+        if action == new_action:
+            self.new()
 
         if action == update_action:
             self.update()
 
         elif action == delete_action:
             self.delete()
+
+    def new(self):
+        mw = self.p.p.mw
+        mw.page_connect_add_symptom()
+
+        fields = {
+            'symptom': self.ui.symptomLabel.text(),
+            'severity': self.ui.severityLabel.text()
+        }
+
+        mw.add_symptom_page.set_fields(fields)
 
     def update(self):
         mw = self.p.p.mw
