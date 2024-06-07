@@ -3,7 +3,6 @@ from PyQt5.QtCore import Qt
 
 from gui.designer.Ui_symptomListing import Ui_symptomListing
 from models.symptomTimes import SymptomTimes
-from time_helpers import Time
 
 class SymptomListing:
     def __init__(self, parent, **kwargs):
@@ -36,16 +35,26 @@ class SymptomListing:
         action = context_menu.exec_(self.widget.mapToGlobal(pos))
 
         if action == update_action:
-            mw = self.p.p.mw
-            mw.page_connect_add_symptom()
-
-            mw.add_symptom_page.ui.symptomInput.setCurrentText(self.ui.symptomLabel.text())
-            mw.add_symptom_page.ui.severityInput.setValue(int(self.ui.severityLabel.text()))
-            mw.add_symptom_page.ui.dateInput.setDate(Time.strDate_widgetDate(self.ui.dateLabel.text()))
-            mw.add_symptom_page.ui.timeInput.setTime(Time.strTime_widgetTime(self.ui.timeLabel.text()))
+            self.update()
 
         elif action == delete_action:
-            SymptomTimes.delete(self.id)
-            self.p.update_listings(self.kwargs['date'])
+            self.delete()
 
+    def update(self):
+        mw = self.p.p.mw
+        mw.page_connect_add_symptom()
+
+        fields = {
+            'symptom': self.ui.symptomLabel.text(),
+            'severity': self.ui.severityLabel.text(),
+            'date': self.ui.dateLabel.text(),
+            'time': self.ui.timeLabel.text()
+        }
+
+        mw.add_symptom_page.set_fields(fields)
+
+    def delete(self):
+        SymptomTimes.delete(self.id)
+        self.p.update_listings(self.kwargs['date'])
+        print("Symptom time deleted.")
     

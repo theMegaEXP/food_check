@@ -5,6 +5,7 @@ from gui.designer.Ui_addSymptomPage import Ui_addSymptomPage
 from gui.widgets.backButton import BackButton
 from models.symptomsAvailable import SymptomsAvailable
 from models.symptomTimes import SymptomTimes
+from time_helpers import Time;
 
 class AddSymptomPage():
     def __init__(self, main_window):
@@ -39,4 +40,10 @@ class AddSymptomPage():
         self.ui.severityInput.setValue(1)
         self.ui.dateInput.setDate(QDate.currentDate())
         self.ui.timeInput.setTime(QTime.currentTime())
+
+    def set_fields(self, fields):
+        self.ui.symptomInput.setCurrentText(fields['symptom'])
+        self.ui.severityInput.setValue(int(fields['severity']))
+        self.ui.dateInput.setDate(Time.strDate_widgetDate(fields['date']))
+        self.ui.timeInput.setTime(Time.strTime_widgetTime(fields['time']))
         
