@@ -89,13 +89,13 @@ class AddFoodPage:
             is_error = True
             self.ui.errorMsg.setText("You must add at least one ingredient.")
         
-        elif Foods.product_exists(self.ui.productInput.text()):
+        elif Foods.product_exists(self.ui.productInput.text()) and self.retrieve_ingrediens() == Foods.fetch_product_ingredients(self.ui.productInput.text()):
             is_error = True
-            self.ui.errorMsg.setText("This product name has already been used.")
+            self.ui.errorMsg.setText("This product name has already been used. Ingredients must match the previous product name.")
 
-        elif Foods.barcode_exists(self.ui.barcodeInput.text()):
+        elif Foods.barcode_exists(self.ui.barcodeInput.text()) and self.retrieve_ingrediens() == Foods.fetch_product_ingredients(self.ui.productInput.text()):
             is_error = True
-            self.ui.errorMsg.setText("This barcode name has alreayd been used.")
+            self.ui.errorMsg.setText("This barcode name has alrady been used. Ingredients must match previous barcode.")
 
         if is_error:
             self.ui.errorMsg.show()

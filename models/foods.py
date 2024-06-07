@@ -139,6 +139,19 @@ class Foods:
             dictArr.append(dict)
             
         return dictArr
+    
+    def fetch_product_ingredients(pb):
+        # pb is either a product name or barcode
+        
+        query = f"""
+                SELECT ingredient
+                FROM ingredients
+                JOIN product_ingredients ON ingredients.id = product_ingredients.ingredient_id
+                JOIN products ON product_ingredients.product_id = products.id
+                WHERE product = {pb} OR barcode = {pb}
+                """
+        
+        return [ingredient[0] for ingredient in DB.Query.query_results(query)]
 
 
     def factory(amount):
