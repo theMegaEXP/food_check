@@ -1,5 +1,6 @@
 from database.db import DB
 from database.tables import Tables
+from database.generate import Generate
 
 class SymptomsAvailable:
     def store(symptom):
@@ -14,6 +15,9 @@ class SymptomsAvailable:
 
     def fetch():
         return DB.Query.fetch_columns('symptoms', ['symptom'])
+    
+    def factory():
+        SymptomsAvailable.store(Generate.symptom())
     
     def reset():
         DB.Query.drop_table('symptoms')
