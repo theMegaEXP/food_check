@@ -42,8 +42,11 @@ class AddSymptomPage():
         self.ui.timeInput.setTime(QTime.currentTime())
 
     def set_fields(self, fields):
-        self.ui.symptomInput.setCurrentText(fields['symptom'])
-        self.ui.severityInput.setValue(int(fields['severity']))
-        self.ui.dateInput.setDate(Time.strDate_widgetDate(fields['date']))
-        self.ui.timeInput.setTime(Time.strTime_widgetTime(fields['time']))
+        date = Time.strDate_widgetDate(fields.get('date')) if fields.get('date') is not None else QDate.currentDate()
+        time = Time.strTime_widgetTime(fields.get('time')) if fields.get('time') is not None else QTime.currentTime()
+
+        self.ui.symptomInput.setCurrentText(fields['symptom'] or '')
+        self.ui.severityInput.setValue(int(fields['severity']) or 1)
+        self.ui.dateInput.setDate(date)
+        self.ui.timeInput.setTime(time)
         
