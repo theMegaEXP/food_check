@@ -24,15 +24,15 @@ class Foods:
             if data['barcode'] and data['product']:
                 if not DB.Query.value_exists('products', 'product', data['product']) and not DB.Query.value_exists('products', 'barcode', data['barcode']):
                     DB.Query.insert_into('products', ['product', 'barcode'], [data['product'], data['barcode']])
-                    product_id = DB.Query.fetch_id('products', 'barcode', data['barcode'])
+                product_id = DB.Query.fetch_id('products', 'barcode', data['barcode'])
             elif data['barcode']:
                 if not DB.Query.value_exists('products', 'barcode', data['barcode']):
                     DB.Query.insert_into('products', ['barcode'], [data['barcode']])
-                    product_id = DB.Query.fetch_id('products', 'barcode', data['barcode'])
+                product_id = DB.Query.fetch_id('products', 'barcode', data['barcode'])
             elif data['product']:
-                if not DB.Query.value_exists('products', 'barcode', data['product']):
+                if not DB.Query.value_exists('products', 'product', data['product']):
                     DB.Query.insert_into('products', ['product'], [data['product']])
-                    product_id = DB.Query.fetch_id('products', 'product', data['product'])
+                product_id = DB.Query.fetch_id('products', 'product', data['product'])
             
         for ingredient in data['ingredients']:
             
