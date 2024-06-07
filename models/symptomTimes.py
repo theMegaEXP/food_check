@@ -31,10 +31,11 @@ class SymptomTimes:
     def factory(amount):
         for i in range(amount):
             symptom = Generate.symptom()
+            severity = Generate.integer(1, 10)
             date = Generate.date()
             time = Generate.time()
 
-            SymptomTimes.store(symptom=symptom, date=date, time=time)
+            SymptomTimes.store(symptom=symptom, severity=severity, date=date, time=time)
 
     def reset():
         DB.Query.drop_table('symptom_times')
