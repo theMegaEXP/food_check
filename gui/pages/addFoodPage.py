@@ -62,7 +62,7 @@ class AddFoodPage:
             if widget is not None:
                 widget.deleteLater()
 
-    def set_fields(self, fields):
+    def set_fields(self, fields: dict):
         date = Time.strDate_widgetDate(fields.get('date')) if fields.get('date') is not None else QDate.currentDate()
         time = Time.strTime_widgetTime(fields.get('time')) if fields.get('time') is not None else QTime.currentTime()
 
