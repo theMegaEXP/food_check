@@ -45,7 +45,7 @@ class Foods:
             if product_provided:
                 DB.Query.insert_into('product_ingredient_times', ['ingredient_id', 'product_id', 'date', 'time', 'datetime'], [ingredient_id, product_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
                 if not DB.Query.composite_key_exists('product_ingredients', 'product_id', product_id, 'ingredient_id', ingredient_id):
-                    DB.Query.insert_into('product_ingredients', ['product_id', 'ingredient_id'] [product_id, ingredient_id])
+                    DB.Query.insert_into('product_ingredients', ['product_id', 'ingredient_id'], [product_id, ingredient_id])
             else:
                 DB.Query.insert_into('product_ingredient_times', ['ingredient_id', 'date', 'time', 'datetime'], [ingredient_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
 
