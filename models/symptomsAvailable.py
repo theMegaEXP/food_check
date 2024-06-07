@@ -16,8 +16,9 @@ class SymptomsAvailable:
     def fetch():
         return DB.Query.fetch_columns('symptoms', ['symptom'])
     
-    def factory():
-        SymptomsAvailable.store(Generate.symptom())
+    def factory(amount):
+        for i in range(amount):
+            SymptomsAvailable.store(Generate.symptom())
     
     def reset():
         DB.Query.drop_table('symptoms')
