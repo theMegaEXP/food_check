@@ -100,6 +100,7 @@ class Foods:
                     FROM product_ingredient_times
                     JOIN ingredients ON product_ingredient_times.ingredient_id = ingredients.id
                     WHERE product_ingredient_times.product_id = {dict['product_id']}
+                        AND product_ingredient_times.datetime = '{dict['datetime']}'
                     """
             ingredient_results = DB.Query.query_results(query)
             dict['ingredients'] = [ingredient[0] for ingredient in ingredient_results]
