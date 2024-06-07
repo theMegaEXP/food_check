@@ -38,9 +38,9 @@ class Foods:
             
             # Insert into ingredients table
             if not DB.Query.value_exists('ingredients', 'ingredient', ingredient):
-                DB.Query.insert_into('ingredients', ['ingredient'], [ingredient])
+                DB.Query.insert_into('ingredients', ['ingredient'], [ingredient]) 
 
-            # Insert into product_ingredient_times table
+            # Insert into product_ingredient_times and product_ingredients table
             ingredient_id = DB.Query.fetch_id('ingredients', 'ingredient', ingredient)
             if product_provided:
                 DB.Query.insert_into('product_ingredient_times', ['ingredient_id', 'product_id', 'date', 'time', 'datetime'], [ingredient_id, product_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
@@ -53,11 +53,14 @@ class Foods:
         pass
 
     def delete(product_id: int, datetime: str):
+        print(product_id)
+        print(datetime)
+        
         if product_id == None:
             DB.Query.query_operation(f"DELETE FROM product_ingredient_times WHERE datetime = '{datetime}' AND product_id IS NULL")
         else:
             # Delete from product_ingredient_times table
-            DB.Query.delete_by_column('product_ingredient_times', 'product_id', product_id)
+            DB.Query.query_operation(f"DELETE FROM product_ingredient_times WHERE datetime = '{datetime}' AND product_id = {product_id}")
             
             # Delete from products table
             DB.Query.delete_by_column('products', 'id', product_id)
