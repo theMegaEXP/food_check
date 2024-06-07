@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import QDate, QTime, QObject
+from PyQt5.QtCore import QDate, QTime
 
 from gui.designer.Ui_addSymptomPage import Ui_addSymptomPage
 from gui.widgets.backButton import BackButton

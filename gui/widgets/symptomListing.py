@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QMenu
 from PyQt5.QtCore import Qt
-from datetime import datetime
 
 from gui.designer.Ui_symptomListing import Ui_symptomListing
 from models.symptomTimes import SymptomTimes
