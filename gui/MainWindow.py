@@ -25,7 +25,7 @@ class MainWindow:
         self.barcode_page = BarcodePage(self)
         self.add_food_page = AddFoodPage(self)
         self.symptoms_page = SymptomsPage(self)
-        self.ignored_ingredients_page = IgnoredIngredientsPage()
+        self.ignored_ingredients_page = IgnoredIngredientsPage(self)
         
         self.ui.stackedWidget.addWidget(self.home_page.widget)
         self.ui.stackedWidget.addWidget(self.add_symptom_page.widget)

@@ -25,6 +25,8 @@ class HomePage:
         self.ui.stackedWidget.setCurrentWidget(self.show_foods_page.widget)
 
     def button_setup(self):
+        self.ui.enterIgnoredIngredientsPage.clicked.connect(lambda: self.mw.page_connect_ignored_ingredients())
+        
         self.ui.enterSymptomPage.clicked.connect(lambda: self.mw.page_connect_add_symptom())
         self.ui.enterBarcodePage.clicked.connect(lambda: self.mw.page_connect_barcode())
         self.ui.enterFoodPage.clicked.connect(lambda: self.mw.page_connect_add_food())
