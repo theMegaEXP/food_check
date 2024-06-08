@@ -64,7 +64,6 @@ class DB:
             set = ', '.join([f"{update_columns[i]} = '{update_values[i]}'" for i in range(len(update_columns))])
             c.execute(f"UPDATE {table} SET {set} WHERE {where_column} = {where_value}")
             conn.commit()
-            print("DB.Query.update_by_column() called")
             
     class View:
         def show_tables():

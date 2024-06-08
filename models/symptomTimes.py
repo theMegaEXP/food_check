@@ -13,7 +13,6 @@ class SymptomTimes:
 
     def update(symptom_id: int, **new_data):
         # Expected from new_data: severity, date, time
-        print("SymptomTimes.update() called")
         DB.Query.update_by_column('symptom_times', ['symptom_id', 'severity', 'date', 'time'], [symptom_id, new_data['severity'], new_data['date'], new_data['time']], 'symptom_id', symptom_id)
 
     def delete(id):
