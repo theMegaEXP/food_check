@@ -12,7 +12,7 @@ class IgnoredIngredientsPage():
         self.ui.setupUi(self.widget)
 
         self.form_setup()
-        self.widget_setup
+        self.widget_setup()
 
     def form_setup(self):
         self.ui.returnBtn.clicked.connect(lambda: self.save_items())
