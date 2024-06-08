@@ -26,6 +26,12 @@ class Ui_homePage(object):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.settingsDisplay = QtWidgets.QHBoxLayout()
+        self.settingsDisplay.setObjectName("settingsDisplay")
+        self.enterIgnoredIngredientsPage = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.enterIgnoredIngredientsPage.setObjectName("enterIgnoredIngredientsPage")
+        self.settingsDisplay.addWidget(self.enterIgnoredIngredientsPage)
+        self.verticalLayout_2.addLayout(self.settingsDisplay)
         self.buttonDisplay = QtWidgets.QVBoxLayout()
         self.buttonDisplay.setObjectName("buttonDisplay")
         self.enterBarcodePage = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
@@ -101,7 +107,7 @@ class Ui_homePage(object):
         self.stackedWidget.addWidget(self.page_2)
         self.dataDisplay.addWidget(self.stackedWidget)
         self.verticalLayout_2.addLayout(self.dataDisplay)
-        self.verticalLayout_2.setStretch(1, 1)
+        self.verticalLayout_2.setStretch(2, 1)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
 
@@ -111,6 +117,8 @@ class Ui_homePage(object):
     def retranslateUi(self, homePage):
         _translate = QtCore.QCoreApplication.translate
         homePage.setWindowTitle(_translate("homePage", "HomePage"))
+        self.enterIgnoredIngredientsPage.setToolTip(_translate("homePage", "Choose ingredients to ignore when searching for problematic ingredients."))
+        self.enterIgnoredIngredientsPage.setText(_translate("homePage", "Ignore Ingredients"))
         self.enterBarcodePage.setText(_translate("homePage", "Enter Food (barcode)"))
         self.enterFoodPage.setText(_translate("homePage", "Enter Food (manual entry)"))
         self.enterSymptomPage.setText(_translate("homePage", "Enter Symptom"))
