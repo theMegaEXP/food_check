@@ -11,8 +11,10 @@ class SymptomTimes:
             symptom_id = DB.Query.fetch_id('symptoms', 'symptom', data['symptom'])
             DB.Query.insert_into('symptom_times', ['symptom_id', 'severity', 'date', 'time', 'datetime'], [symptom_id, data['severity'], data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
 
-    def update(symptom_id, new_symptom):
-        DB.Query.update_by_column('symptom_times', ['symptom'], [new_symptom], 'symptom_id', symptom_id)
+    def update(symptom_id: int, **new_data):
+        # Expected from new_data: severity, date, time
+        print("SymptomTimes.update() called")
+        DB.Query.update_by_column('symptom_times', ['symptom_id', 'severity', 'date', 'time'], [symptom_id, new_data['severity'], new_data['date'], new_data['time']], 'symptom_id', symptom_id)
 
     def delete(id):
         DB.Query.delete_by_column('symptom_times', 'id', id)

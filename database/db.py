@@ -57,13 +57,14 @@ class DB:
             c.execute(f"DELETE FROM {table} WHERE {column} = {value}")
             conn.commit()
 
-        def update_by_column(table: str, columns: list[str], values: list[str], column: str, value: str):
-            if len(columns) != len(values):
-                raise "Columns and values are not the same lenght."
+        def update_by_column(table: str, update_columns: list[str], update_values: list[str], where_column: str, where_value: str):
+            if len(update_columns) != len(update_values):
+                raise ValueError("Columns and values are not the same length.")
             
-            set = ', '.join([f"{columns[i]} = '{values[i]}'" for i in range(len(columns))])
-            c.execute(f"UPDATE {table} SET {set} WHERE {column} = {value}")
+            set = ', '.join([f"{update_columns[i]} = '{update_values[i]}'" for i in range(len(update_columns))])
+            c.execute(f"UPDATE {table} SET {set} WHERE {where_column} = {where_value}")
             conn.commit()
+            print("DB.Query.update_by_column() called")
             
     class View:
         def show_tables():

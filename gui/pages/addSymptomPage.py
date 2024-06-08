@@ -14,6 +14,8 @@ class AddSymptomPage():
         self.ui = Ui_addSymptomPage()
         self.ui.setupUi(self.widget)
 
+        self.symptom_id = None
+
         self.form_setup()
         self.widget_setup()
 
@@ -31,8 +33,12 @@ class AddSymptomPage():
         date = self.ui.dateInput.text()
         time = self.ui.timeInput.text()
 
-        SymptomTimes.store(symptom=symptom, severity=severity, date=date, time=time)
+        if self.symptom_id == None:
+            SymptomTimes.store(symptom=symptom, severity=severity, date=date, time=time)
+        else:
+            SymptomTimes.update(self.symptom_id, severity=severity, date=date, time=time)
         self.mw.page_connect_home()
+        self.symptom_id = None
 
     def reset(self):
         self.ui.symptomInput.clear()
@@ -49,4 +55,8 @@ class AddSymptomPage():
         self.ui.severityInput.setValue(int(fields['severity']) or 1)
         self.ui.dateInput.setDate(date)
         self.ui.timeInput.setTime(time)
+
+    def set_update_id(self, id):
+        self.symptom_id = id
+        self.ui.submit.setText("update")
         

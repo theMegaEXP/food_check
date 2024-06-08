@@ -67,6 +67,7 @@ class SymptomListing:
         }
 
         mw.add_symptom_page.set_fields(fields)
+        mw.add_symptom_page.set_update_id(self.kwargs['id'])
 
     def delete(self):
         SymptomTimes.delete(self.id)
