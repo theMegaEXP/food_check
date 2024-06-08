@@ -4,7 +4,7 @@ from database.tables import Tables
 class IgnoredIngredients:
     def store(ingredient):
         if not DB.Query.value_exists('ignored_ingredients', 'ingredient', ingredient):
-            DB.Query.insert_into('ignored_ingredients', 'ingredient', ingredient)
+            DB.Query.insert_into('ignored_ingredients', ['ingredient'], [ingredient])
 
     def update(old_ingredient, new_ingredient):
         DB.Query.update_by_column('ignored_ingredients', ['ingredient'], [old_ingredient], 'ingredient', new_ingredient)
