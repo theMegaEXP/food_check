@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget
 
 from gui.designer.Ui_ignoredIngredientsPage import Ui_ignoredIngredientsPage
 
-class AddSymptomPage():
+class IgnoredIngredientsPage():
     def __init__(self, main_window):
         self.mw = main_window
         self.widget = QWidget()
