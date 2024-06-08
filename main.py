@@ -12,6 +12,10 @@ def main():
     debug.debug()
 
     app = QApplication(sys.argv)
+
+    with open('gui/styles.qss', 'r') as file:
+        app.setStyleSheet(file.read())
+
     main_win = MainWindow()
     main_win.show()
     app.aboutToQuit.connect(lambda: DB.Operations.close())

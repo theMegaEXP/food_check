@@ -9,20 +9,20 @@ class BackButton(QWidget):
         self.button = QPushButton("Back", self)
         self.button.clicked.connect(self.back)
         self.button.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
-        self.button.setStyleSheet("""
-                                  QPushButton {
-                                    color: blue; 
-                                    background-color: transparent; 
-                                    border: none;
-                                    text-align: left;
-                                    font-size: 14px;
-                                    padding: 0;
-                                    margin: 0;
-                                  }
-                                  QPushButton:hover {
-                                        text-decoration: underline;
-                                    }
-                                  """)
+        # self.button.setStyleSheet("""
+        #                           QPushButton {
+        #                             color: blue; 
+        #                             background-color: transparent; 
+        #                             border: none;
+        #                             text-align: left;
+        #                             font-size: 14px;
+        #                             padding: 0;
+        #                             margin: 0;
+        #                           }
+        #                           QPushButton:hover {
+        #                                 text-decoration: underline;
+        #                             }
+        #                           """)
 
         layout = QVBoxLayout(self)
         layout.addWidget(self.button)
