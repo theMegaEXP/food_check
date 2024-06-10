@@ -1,5 +1,10 @@
-QPushButton#submit {
-    background-color: rgb(0, 50, 0) !important;
-    color: white;
+/* Main Window styles */
+QMainWindow, QLabel#mainTitle {
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(151, 56, 255, 255), stop:1 rgba(91, 0, 230, 255));
 }
-
+QLabel#mainTitle {
+    color: #fff; padding: 0 5px;
+}
+QStackedWidget {
+    background-color: #eee;
+}
