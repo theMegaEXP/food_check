@@ -8,3 +8,10 @@ QLabel#mainTitle {
 QStackedWidget {
     background-color: #eee;
 }
+
+/* Global Styles */
+QPushButton#submit {
+    background-color: green;
+}
+
+/* Back button styles */

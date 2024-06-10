@@ -41,7 +41,7 @@ class Ui_MainWindow(object):
         self.mainTitle.setObjectName("mainTitle")
         self.verticalLayout.addWidget(self.mainTitle)
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
-        self.stackedWidget.setStyleSheet("background-color: #eee;")
+        self.stackedWidget.setStyleSheet("")
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
