@@ -14,7 +14,12 @@ class ItemInput:
 
     def form_setup(self):
         self.ui.input.setText(self.text)
-        self.ui.deleteBtn.clicked.connect(lambda: self.delete()) 
+        self.ui.deleteBtn.clicked.connect(lambda: self.del_req()) 
+
+    def del_req(self):
+        parent_layout = self.p.ui.symptomsLayout
+        index = parent_layout.indexOf(self.widget)
+        self.p.delete_item(index)
 
     def delete(self):
         self.widget.deleteLater()

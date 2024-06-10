@@ -29,8 +29,6 @@ class SymptomsPage():
         self.ui.symptomsLayout.addWidget(item_input.widget)
 
     def save_items(self):
-        SymptomsAvailable.reset()
-
         for i in range(self.ui.symptomsLayout.count()):
             widget = self.ui.symptomsLayout.itemAt(i).widget()
             if isinstance(widget, QWidget):
@@ -39,6 +37,17 @@ class SymptomsPage():
                     SymptomsAvailable.store(input_text)
 
         self.mw.page_connect_add_symptom()
+
+    def delete_item(self, index):
+        widget = self.ui.symptomsLayout.itemAt(index).widget()
+        if isinstance(widget, QWidget):
+            symptom_text = widget.findChild(QLineEdit, "input").text()
+            if symptom_text != '':
+                SymptomsAvailable.delete(symptom_text)
+            widget.deleteLater()
+        else:
+            raise Exception(f"Symptom at index {index} can not be deleted since it is not of type QWidget.")
+
                     
 
                 

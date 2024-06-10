@@ -8,8 +8,8 @@ from database.db import DB
 
 
 def main():
-    #Tables.create_tables()
-    #debug.debug()
+    Tables.create_tables()
+    debug.debug()
 
     app = QApplication(sys.argv)
 
