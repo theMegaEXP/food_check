@@ -6,18 +6,15 @@ QLabel#mainTitle {
     color: #fff; padding: 0 5px;
 }
 QStackedWidget {
-    background-color: #eee;
-}
-
-/* Global Styles */
-QPushButton {
     background-color: #efefef;
 }
 
+/* Global Styles */
+QPushButton, QComboBox, QSpinBox, QLineEdit, QDateEdit, QTimeEdit {
+    background-color: #efefee;
+}
 QPushButton#submit {
     background-color: #7ee11e;
     color: #fff;
     font-weight: bold;
 }
-
-/* Back button styles */
