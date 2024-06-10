@@ -8,6 +8,9 @@ QLabel#mainTitle {
 QStackedWidget {
     background-color: #efefef;
 }
+QScrollArea {
+    border: none;
+}
 
 /* Global Styles */
 QPushButton, QComboBox, QSpinBox, QLineEdit, QDateEdit, QTimeEdit {
