@@ -45,7 +45,7 @@ class Ui_symptomsPage(object):
         font.setBold(True)
         font.setWeight(75)
         self.returnBtn.setFont(font)
-        self.returnBtn.setStyleSheet("text-align: left; color: blue;")
+        self.returnBtn.setStyleSheet("")
         self.returnBtn.setDefault(False)
         self.returnBtn.setFlat(True)
         self.returnBtn.setObjectName("returnBtn")

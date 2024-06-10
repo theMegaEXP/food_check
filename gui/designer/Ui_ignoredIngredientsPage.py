@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_ignoredIngredientsPage(object):
     def setupUi(self, ignoredIngredientsPage):
         ignoredIngredientsPage.setObjectName("ignoredIngredientsPage")
-        ignoredIngredientsPage.resize(328, 416)
+        ignoredIngredientsPage.resize(320, 416)
         self.verticalLayout = QtWidgets.QVBoxLayout(ignoredIngredientsPage)
         self.verticalLayout.setObjectName("verticalLayout")
         self.returnBtn = QtWidgets.QPushButton(ignoredIngredientsPage)
@@ -28,7 +28,7 @@ class Ui_ignoredIngredientsPage(object):
         font.setBold(True)
         font.setWeight(75)
         self.returnBtn.setFont(font)
-        self.returnBtn.setStyleSheet("text-align: left; color: blue;")
+        self.returnBtn.setStyleSheet("")
         self.returnBtn.setDefault(False)
         self.returnBtn.setFlat(True)
         self.returnBtn.setObjectName("returnBtn")
@@ -48,7 +48,7 @@ class Ui_ignoredIngredientsPage(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollLayout = QtWidgets.QWidget()
-        self.scrollLayout.setGeometry(QtCore.QRect(0, 0, 308, 306))
+        self.scrollLayout.setGeometry(QtCore.QRect(0, 0, 300, 306))
         self.scrollLayout.setObjectName("scrollLayout")
         self.scrollAreaLayout_2 = QtWidgets.QVBoxLayout(self.scrollLayout)
         self.scrollAreaLayout_2.setObjectName("scrollAreaLayout_2")
