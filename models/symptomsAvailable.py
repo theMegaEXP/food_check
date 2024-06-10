@@ -11,7 +11,9 @@ class SymptomsAvailable:
         DB.Query.update_by_column('symptoms', ['symptom'], [old_symptom], 'symptom', new_symptom)
 
     def delete(symptom):
-        DB.Query.delete_by_column('symptoms', 'symptom', symptom)
+        symptom_id = DB.Query.fetch_id('symptoms', 'symptom', symptom)
+        if not DB.Query.value_exists('symptom_times', 'symptom_id', symptom_id):
+            DB.Query.delete_by_column('symptoms', 'symptom', symptom)
 
     def fetch():
         return DB.Query.fetch_columns('symptoms', ['symptom'])
