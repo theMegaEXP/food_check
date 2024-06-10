@@ -54,7 +54,7 @@ class DB:
             return c.fetchone()[0] > 0
         
         def delete_by_column(table: str, column: str, value: str):
-            c.execute(f"DELETE FROM {table} WHERE {column} = {value}")
+            c.execute(f"DELETE FROM {table} WHERE {column} = '{value}'")
             conn.commit()
 
         def update_by_column(table: str, update_columns: list[str], update_values: list[str], where_column: str, where_value: str):
