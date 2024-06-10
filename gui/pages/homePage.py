@@ -31,11 +31,29 @@ class HomePage:
         self.ui.enterBarcodePage.clicked.connect(lambda: self.mw.page_connect_barcode())
         self.ui.enterFoodPage.clicked.connect(lambda: self.mw.page_connect_add_food())
 
-        self.ui.foodsPageBtn.clicked.connect(lambda: self.page_connect_displays(self.show_foods_page.widget))
-        self.ui.symptomsPageBtn.clicked.connect(lambda: self.page_connect_displays(self.show_symptoms_page.widget))
+        self.ui.foodsPageBtn.clicked.connect(lambda: self.page_connect_show_foods())
+        self.ui.foodsPageBtn.setCheckable(True)
+        self.ui.foodsPageBtn.setChecked(True)
+        self.ui.foodsPageBtn.setEnabled(False)
+        self.ui.symptomsPageBtn.clicked.connect(lambda: self.page_connect_show_symptoms())
+        self.ui.symptomsPageBtn.setCheckable(True)
 
-    def page_connect_displays(self, page):
+    def page_connect(self, page):
         self.ui.stackedWidget.setCurrentWidget(page)
+
+    def page_connect_show_foods(self):
+        self.ui.foodsPageBtn.setEnabled(False)
+        self.ui.foodsPageBtn.setChecked(True)
+        self.ui.symptomsPageBtn.setEnabled(True)
+        self.ui.symptomsPageBtn.setChecked(False)
+        self.page_connect(self.show_foods_page.widget)
+
+    def page_connect_show_symptoms(self):
+        self.ui.foodsPageBtn.setEnabled(True)
+        self.ui.foodsPageBtn.setChecked(False)
+        self.ui.symptomsPageBtn.setEnabled(False)
+        self.ui.symptomsPageBtn.setChecked(True)
+        self.page_connect(self.show_symptoms_page.widget)
 
     def date_edit_setup(self):
         self.ui.dateEdit.setDate(QDate.currentDate())
