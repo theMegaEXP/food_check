@@ -42,9 +42,15 @@ class SymptomsPage():
         widget = self.ui.symptomsLayout.itemAt(index).widget()
         if isinstance(widget, QWidget):
             symptom_text = widget.findChild(QLineEdit, "input").text()
-            if symptom_text != '':
-                SymptomsAvailable.delete(symptom_text)
-            widget.deleteLater()
+            if not SymptomsAvailable.exists(symptom_text):
+                widget.deleteLater()
+            elif symptom_text != '':
+                can_del = SymptomsAvailable.delete(symptom_text)
+                if can_del:
+                    widget.deleteLater()
+                else:
+                    print("Unable to delete listing since it already has has times.")
+
         else:
             raise Exception(f"Symptom at index {index} can not be deleted since it is not of type QWidget.")
 

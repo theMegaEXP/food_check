@@ -14,9 +14,14 @@ class SymptomsAvailable:
         symptom_id = DB.Query.fetch_id('symptoms', 'symptom', symptom)
         if not DB.Query.value_exists('symptom_times', 'symptom_id', symptom_id):
             DB.Query.delete_by_column('symptoms', 'symptom', symptom)
+            return True
+        return False
 
     def fetch():
         return DB.Query.fetch_columns('symptoms', ['symptom'])
+    
+    def exists(symptom: str):
+        return DB.Query.value_exists('symptoms', 'symptom', symptom)
     
     def factory(amount):
         for i in range(amount):
