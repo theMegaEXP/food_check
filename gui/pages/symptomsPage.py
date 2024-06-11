@@ -50,7 +50,7 @@ class SymptomsPage():
                 if can_del:
                     widget.deleteLater()
                 else:
-                    self.ui.errorMsg.setText(f"Unable to delete {symptom_text} symptom since it already has has times.")
+                    self.ui.errorMsg.setText(f"Unable to delete {symptom_text} symptom since it already has times.")
                     self.ui.errorMsg.show()
 
         else:
