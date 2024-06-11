@@ -39,6 +39,7 @@ class SymptomsPage():
         self.mw.page_connect_add_symptom()
 
     def delete_item(self, index):
+        self.ui.errorMsg.hide()
         widget = self.ui.symptomsLayout.itemAt(index).widget()
         if isinstance(widget, QWidget):
             symptom_text = widget.findChild(QLineEdit, "input").text()
@@ -50,9 +51,20 @@ class SymptomsPage():
                     widget.deleteLater()
                 else:
                     self.ui.errorMsg.setText(f"Unable to delete {symptom_text} symptom since it already has has times.")
+                    self.ui.errorMsg.show()
 
         else:
             raise Exception(f"Symptom at index {index} can not be deleted since it is not of type QWidget.")
+
+    def reset(self):
+        self.ui.errorMsg.hide()
+        self.ui.errorMsg.setText("")
+        
+        for i in range(self.ui.symptomsLayout.count()):
+            widget = self.ui.symptomsLayout.itemAt(i).widget()
+            widget.deleteLater()
+        
+        self.widget_setup()
 
 
                     

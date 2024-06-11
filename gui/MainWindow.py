@@ -56,6 +56,7 @@ class MainWindow:
         self.page_connect(self.barcode_page.widget)
 
     def page_connect_symptoms(self):
+        self.symptoms_page.reset()
         self.page_connect(self.symptoms_page.widget)
 
     def page_connect_ignored_ingredients(self):
