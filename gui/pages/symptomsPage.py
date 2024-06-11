@@ -49,10 +49,11 @@ class SymptomsPage():
                 if can_del:
                     widget.deleteLater()
                 else:
-                    print("Unable to delete listing since it already has has times.")
+                    self.ui.errorMsg.setText(f"Unable to delete {symptom_text} symptom since it already has has times.")
 
         else:
             raise Exception(f"Symptom at index {index} can not be deleted since it is not of type QWidget.")
+
 
                     
 
