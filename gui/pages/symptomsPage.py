@@ -21,8 +21,12 @@ class SymptomsPage():
     def widget_setup(self):
         symptoms = SymptomsAvailable.fetch()
         for symptom in symptoms:
-            item_input = ItemInput(self, symptom[0])
-            self.ui.symptomsLayout.addWidget(item_input.widget)
+            if SymptomsAvailable.exists(symptom[0]):
+                item_input = ItemInput(self, symptom[0], True)
+                self.ui.symptomsLayout.addWidget(item_input.widget)
+            else:
+                item_input = ItemInput(self, symptom[0])
+                self.ui.symptomsLayout.addWidget(item_input.widget)
 
     def add_item_input(self):
         item_input = ItemInput(self)

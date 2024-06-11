@@ -3,9 +3,11 @@ from PyQt5.QtWidgets import QWidget
 from gui.designer.Ui_itemInput import Ui_itemInput
 
 class ItemInput:
-    def __init__(self, parent, text=''):
+    def __init__(self, parent, text='', is_disabled = False):
         self.p = parent
         self.text = text
+        self.is_disabled = is_disabled
+        
         self.widget = QWidget()
         self.ui = Ui_itemInput()
         self.ui.setupUi(self.widget)
@@ -15,6 +17,9 @@ class ItemInput:
     def form_setup(self):
         self.ui.input.setText(self.text)
         self.ui.deleteBtn.clicked.connect(lambda: self.del_req()) 
+
+        if self.is_disabled:
+            self.ui.input.setEnabled(False)
 
     def del_req(self):
         parent_layout = self.p.ui.symptomsLayout
