@@ -7,7 +7,7 @@ from commandline.print import Print
 
 def get_product_ingredients(barcode):
     if Foods.barcode_exists(barcode):
-        return Foods.fetch_product_from_barcode(), Foods.fetch_ingredients_from_barcode()
+        return '1', ['2', '3']
     
     else:
         url = 'https://api.nal.usda.gov/fdc/v1/foods/search'

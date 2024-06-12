@@ -45,8 +45,8 @@ class BarcodePage:
                     'barcode': self.ui.barcodeInput.text(),
                     'ingredients': ingredients
                 }
-                self.mw.page_connect_add_foods_page()
-                self.mw.add_foods_page.set_fields(fields)
+                self.mw.page_connect_add_food()
+                self.mw.add_food_page.set_fields(fields)
 
         self.ui.errorMsg.setVisible(True)
 

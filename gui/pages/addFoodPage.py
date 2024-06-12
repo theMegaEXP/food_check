@@ -71,8 +71,10 @@ class AddFoodPage:
         self.ui.dateInput.setDate(date)
         self.ui.timeInput.setTime(time)
 
-        for ingredient in fields['ingredients'].split(', '):
-            self.add_ingredient_input(ingredient)
+        if fields['ingredients']:
+            ingredients = fields['ingredients'] if isinstance(fields['ingredients'], list) else fields['ingredients'].split(', ')
+            for ingredient in ingredients:
+                self.add_ingredient_input(ingredient)
 
     def errors(self):
         is_error = False
