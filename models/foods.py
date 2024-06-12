@@ -173,20 +173,22 @@ class Foods:
     def barcode_exists(barcode):
         return DB.Query.value_exists('products', 'barcode', barcode)
     
-    def fetch_ingredients_from_barcode(self, barcode):
+    def fetch_ingredients_from_barcode(barcode):
         query = f"""
                 SELECT ingredient
                 FROM ingredients
-                JOIN product_ingredient_times ON ingredients.id = product_ingredient_times.ingredient_id
+                JOIN product_ingredients ON ingredients.id = product_ingredients.ingredient_id
+                JOIN products ON product_ingredients.product_id = products.id
                 WHERE barcode = '{barcode}'
                 """
         return [ingredient[0] for ingredient in DB.Query.query_results(query)]
         
-    def fetch_product_from_barcode(self, barcode):
+    def fetch_product_from_barcode(barcode):
         query = f"""
                 SELECT product
                 FROM products
                 WHERE barcode = '{barcode}'
                 """
-        return DB.Query.query_results(query)[0][0]
+        results = DB.Query.query_results(query)[0][0]
+        return '' if results is None else results
 
