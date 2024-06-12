@@ -182,8 +182,11 @@ class Foods:
                 """
         return [ingredient[0] for ingredient in DB.Query.query_results(query)]
         
-    # def product_from_barcode(self, barcode):
-    #     for dict in self.data:
-    #         if dict['barcode'] == barcode:
-    #             return dict['product']
+    def fetch_product_from_barcode(self, barcode):
+        query = f"""
+                SELECT product
+                FROM products
+                WHERE barcode = '{barcode}'
+                """
+        return DB.Query.query_results(query)[0][0]
 
