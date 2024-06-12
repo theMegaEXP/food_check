@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget
 
 from gui.designer.Ui_barcodePage import Ui_barcodePage
 from gui.widgets.backButton import BackButton
-#from data.barcode_search import get_product_ingredients
+from data.barcode_search import get_product_ingredients
 
 class BarcodePage:
     def __init__(self, main_window):
@@ -27,20 +27,26 @@ class BarcodePage:
         self.ui.errorMsg.setVisible(False)
 
     def submit(self):
-        text = self.ui.barcodeInput.text()
-        if len(text) != 12:
+        barcode = self.ui.barcodeInput.text()
+        if len(barcode) != 12:
             self.ui.errorMsg.setText("This barcode is not valid since it is not 12 digits.")
             self.ui.errorMsg.setVisible(True)
-        elif not text.isdigit():
+        elif not barcode.isdigit():
             self.ui.errorMsg.setText("The barcode must only contain digits.")
             self.ui.errorMsg.setVisible(True)
         else:
-            pass
-            # product, ingredients = get_product_ingredients(text)
-            # if product == None and ingredients == None:
-            #     self.ui.errorMsg.setText("Information from this barcode could not be found. Please return to the homepage and enter the ingredients manually.")
-            # else:
-            #     self.mw.page_connect_home()
+            product, ingredients = get_product_ingredients(barcode)
+            if product == None and ingredients == None:
+                self.ui.errorMsg.setText("Information from this barcode could not be found. Please return to the homepage and enter the ingredients manually.")
+            else:
+                # success
+                fields = {
+                    'product': product,
+                    'barcode': self.ui.barcodeInput.text(),
+                    'ingredients': ingredients
+                }
+                self.mw.page_connect_add_foods_page()
+                self.mw.add_foods_page.set_fields(fields)
 
         self.ui.errorMsg.setVisible(True)
 
