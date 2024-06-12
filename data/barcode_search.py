@@ -2,11 +2,13 @@ import requests
 import json
 
 from pyhidden import fdc_api_key
-from data.init import foods
+from models.foods import Foods
+from commandline.print import Print
 
 def get_product_ingredients(barcode):
-    if foods.check_barcode(barcode):
-        return foods.product_from_barcode(barcode), foods.ingredients_from_barcode(barcode) 
+    if Foods.barcode_exists(barcode):
+        return Foods.fetch_product_from_barcode(), Foods.fetch_ingredients_from_barcode()
+    
     else:
         url = 'https://api.nal.usda.gov/fdc/v1/foods/search'
         params = {
@@ -23,10 +25,12 @@ def get_product_ingredients(barcode):
                 ingredients = data['foods'][0]['ingredients']
                 brandname = data['foods'][0]['brandName']
                 description = data['foods'][0]['description']
-                return f"{brandname} {description}", ingredients
+                return f"{brandname}, {description}", ingredients
             except (IndexError, AttributeError):
+                Print.red("Product information could not be found.")
                 return None, None
         else:
+            Print.red("Response failed.")
             return None, None
    
         
