@@ -61,6 +61,7 @@ class Ui_barcodePage(object):
         font.setFamily("MS PGothic")
         self.errorMsg.setFont(font)
         self.errorMsg.setStyleSheet("color: red;")
+        self.errorMsg.setWordWrap(True)
         self.errorMsg.setObjectName("errorMsg")
         self.verticalLayout.addWidget(self.errorMsg)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
