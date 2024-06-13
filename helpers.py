@@ -2,10 +2,14 @@ from datetime import datetime
 import re
 import math
 
-def ingredients_to_array(ingredients):
+def ingredients_to_array(ingredients: str):
     if ingredients[-1] == '.':
         ingredients = ingredients[:-1]
-    return [elem.strip().lower() for elem in re.split(r', |\(|\)|\[|\]', ingredients) if elem != '']
+    return [
+        elem.strip().lower() 
+        for elem in re.split(r', |\(|\)|\[|\]', ingredients) 
+        if elem != ''
+    ]
 
 def hour_to_unit(hour):
     if hour > 1 and isinstance(hour, float):
