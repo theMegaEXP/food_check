@@ -68,6 +68,7 @@ class Foods:
             # Delete from products table
             if not DB.Query.value_exists('product_ingredient_times', 'product_id', product_id):
                 DB.Query.delete_by_column('products', 'id', product_id)
+                DB.Query.delete_by_column('product_ingredients', 'product_id', product_id)
 
     def fetch():
         pass
