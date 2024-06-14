@@ -53,7 +53,7 @@ class Foods:
                 DB.Query.insert_into('product_ingredient_times', ['ingredient_id', 'date', 'time', 'datetime'], [ingredient_id, data['date'], data['time'], datetime])
 
     def update():
-        pass
+        pass 
 
     def delete(product_id: int, datetime: str):
         print(product_id)
