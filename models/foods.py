@@ -66,7 +66,8 @@ class Foods:
             DB.Query.query_operation(f"DELETE FROM product_ingredient_times WHERE datetime = '{datetime}' AND product_id = {product_id}")
             
             # Delete from products table
-            DB.Query.delete_by_column('products', 'id', product_id)
+            if not DB.Query.value_exists('product_ingredient_times', 'product_id', product_id):
+                DB.Query.delete_by_column('products', 'id', product_id)
 
     def fetch():
         pass
