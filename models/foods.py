@@ -42,12 +42,15 @@ class Foods:
 
             # Insert into product_ingredient_times and product_ingredients table
             ingredient_id = DB.Query.fetch_id('ingredients', 'ingredient', ingredient)
+            datetime = Time.format_datetime(data['date'], data['time'])
+
             if product_provided:
-                DB.Query.insert_into('product_ingredient_times', ['ingredient_id', 'product_id', 'date', 'time', 'datetime'], [ingredient_id, product_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
+                if not Foods.food_time_exists(product_id, ingredient_id, datetime):
+                    DB.Query.insert_into('product_ingredient_times', ['ingredient_id', 'product_id', 'date', 'time', 'datetime'], [ingredient_id, product_id, data['date'], data['time'], datetime])
                 if not DB.Query.composite_key_exists('product_ingredients', 'product_id', product_id, 'ingredient_id', ingredient_id):
                     DB.Query.insert_into('product_ingredients', ['product_id', 'ingredient_id'], [product_id, ingredient_id])
             else:
-                DB.Query.insert_into('product_ingredient_times', ['ingredient_id', 'date', 'time', 'datetime'], [ingredient_id, data['date'], data['time'], Time.format_datetime(data['date'], data['time'])])
+                DB.Query.insert_into('product_ingredient_times', ['ingredient_id', 'date', 'time', 'datetime'], [ingredient_id, data['date'], data['time'], datetime])
 
     def update():
         pass
@@ -191,4 +194,16 @@ class Foods:
                 """
         results = DB.Query.query_results(query)[0][0]
         return '' if results is None else results
-
+    
+    def food_time_exists(product_id: int, ingredient_id: int, datetime: str):
+        query = f"""
+                SELECT EXISTS (
+                    SELECT 1
+                    FROM product_ingredient_times
+                    WHERE product_id = {product_id}
+                        AND ingredient_id = {ingredient_id}
+                        AND datetime = '{datetime}'
+                )
+                """
+        results = DB.Query.query_results(query)[0][0] #returns 1 if a table row contains values and 0 if not
+        return False if results == 0 else True
