@@ -3,6 +3,7 @@ import re
 from commandline.print import Print
 from database.tables import Tables
 from database.db import DB
+import calculate as calc
 
 from models.foods import Foods
 from models.ignoredIngredients import IgnoredIngredients
@@ -30,6 +31,9 @@ def debug():
         elif query_input == 'reset':
             DB.Operations.reset()
             Tables.create_tables()
+
+        elif query_input == 'calc':
+            print(calc.likey_symptom_cause())
 
         elif re.search(r'^reset ([^\s]+)$', query_input):
             table_name = query_input.split(' ')[1]
