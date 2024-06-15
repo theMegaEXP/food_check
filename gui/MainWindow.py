@@ -8,6 +8,7 @@ from gui.pages.addFoodPage import AddFoodPage
 from gui.pages.symptomsPage import SymptomsPage
 from gui.pages.ignoredIngredientsPage import IgnoredIngredientsPage
 from gui.pages.calculatePage import CalculatePage
+from gui.pages.resultsPage import ResultsPage
 
 class MainWindow:
     def __init__(self):
@@ -28,6 +29,7 @@ class MainWindow:
         self.symptoms_page = SymptomsPage(self)
         self.ignored_ingredients_page = IgnoredIngredientsPage(self)
         self.calculate_page = CalculatePage(self)
+        self.results_page = ResultsPage(self)
         
         self.ui.stackedWidget.addWidget(self.home_page.widget)
         self.ui.stackedWidget.addWidget(self.add_symptom_page.widget)
@@ -36,6 +38,7 @@ class MainWindow:
         self.ui.stackedWidget.addWidget(self.symptoms_page.widget)
         self.ui.stackedWidget.addWidget(self.ignored_ingredients_page.widget)
         self.ui.stackedWidget.addWidget(self.calculate_page.widget)
+        self.ui.stackedWidget.addWidget(self.results_page.widget)
         
         self.ui.stackedWidget.setCurrentWidget(self.home_page.widget)
 
@@ -68,4 +71,7 @@ class MainWindow:
     def page_connect_calculation(self):
         self.calculate_page.reset()
         self.page_connect(self.calculate_page.widget)
+
+    def page_connect_results(self):
+        self.page_connect(self.results_page.widget)
 

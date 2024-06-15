@@ -12,6 +12,10 @@ class CalculatePage:
         self.ui.setupUi(self.widget)
 
         self.widget_setup()
+        self.form_setup()
+
+    def form_setup(self):
+        self.ui.submit.clicked.connect(self.submit)
 
     def widget_setup(self):
         self.ui.mainLayout.insertWidget(0, BackButton(self.mw))
@@ -23,4 +27,7 @@ class CalculatePage:
         self.ui.timeInput3.setValue(24)
         self.ui.startDateInput.setDate(QDate.currentDate().addMonths(-1))
         self.ui.endDateInput.setDate(QDate.currentDate())
+
+    def submit(self):
+        self.mw.page_connect_results()
         
