@@ -44,7 +44,7 @@ def all():
         print()
 
 
-def likey_symptom_cause():
+def likey_symptom_cause(max_results: int, delay_times: tuple[float, float, float], start_date: str, end_date: str):
     symptoms = [symptom[0] for symptom in DB.Query.query_results("SELECT symptom FROM symptoms")]
 
     results = {}
