@@ -26,6 +26,7 @@ class HomePage:
 
     def button_setup(self):
         self.ui.enterIgnoredIngredientsPage.clicked.connect(lambda: self.mw.page_connect_ignored_ingredients())
+        self.ui.enterCalculatePage.clicked.connect(lambda: self.mw.page_connect_calculation())
         
         self.ui.enterSymptomPage.clicked.connect(lambda: self.mw.page_connect_add_symptom())
         self.ui.enterBarcodePage.clicked.connect(lambda: self.mw.page_connect_barcode())
