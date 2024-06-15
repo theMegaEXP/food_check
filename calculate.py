@@ -2,11 +2,9 @@ from collections import defaultdict
 import heapq
 
 from helpers import hour_to_unit
+from time_helpers import Time
 from database.db import DB
 from commandline.print import Print
-
-
-
 
 def all():
     query = """
@@ -44,7 +42,18 @@ def all():
         print()
 
 
-def likey_symptom_cause(max_results: int, delay_times: tuple[float, float, float], start_date: str, end_date: str):
+def likey_symptom_cause(max_results: int=4, delay_times: tuple[float, float, float]=(2.35, 5.42, 24.00), start_date: str='05/14/2024', end_date: str='06/14/2024'):
+    #check for incorrect values
+    if 0 > max_results >= 10:
+        raise Exception("max_results out of range. Must be between 1-10")
+    if len(delay_times) > 3:
+        raise Exception("delay_times tuple is too large in length.")
+    if not Time.is_correct_date_format(start_date):
+        raise Exception("start_date is not formatted correctly.")
+    if not Time.is_correct_date_format(end_date):
+        raise Exception("end_date is not formatted correctly.")
+    
+    
     symptoms = [symptom[0] for symptom in DB.Query.query_results("SELECT symptom FROM symptoms")]
 
     results = {}
@@ -78,10 +87,10 @@ def likey_symptom_cause(max_results: int, delay_times: tuple[float, float, float
                 all_ingredient_counts[ingredient] += 1
 
         if all_ingredient_counts:
-            top3 = heapq.nlargest(3, all_ingredient_counts, key=all_ingredient_counts.get)
-            Print.key_value(symptom, ', '.join(top3))
+            top = heapq.nlargest(3, all_ingredient_counts, key=all_ingredient_counts.get)
+            Print.key_value(symptom, ', '.join(top))
             results[symptom] = {}
-            results[symptom]['24h'] = top3
+            results[symptom][hour_to_unit(24)] = top
 
     return results
 
