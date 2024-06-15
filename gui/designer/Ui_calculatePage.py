@@ -117,6 +117,8 @@ class Ui_calculatePage(object):
         self.maxResultsLabel.setText(_translate("calculatePage", "Max Results per Symptom: "))
         self.delayTimesLabel.setText(_translate("calculatePage", "Delay Times"))
         self.delayTimesDesc.setText(_translate("calculatePage", "The delay in times in hours between a food eaten and a symptom occuring. You can get the results from 3 different times at once. Keep the times at 0.00 to ignore it."))
+        self.startDateInput.setDisplayFormat(_translate("calculatePage", "MM/dd/yyyy"))
         self.startDateLabel.setText(_translate("calculatePage", "Start Date"))
+        self.endDateInput.setDisplayFormat(_translate("calculatePage", "MM/dd/yyyy"))
         self.endDateLabel.setText(_translate("calculatePage", "End Date"))
         self.submit.setText(_translate("calculatePage", "Show Results"))

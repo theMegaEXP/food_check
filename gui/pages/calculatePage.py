@@ -30,6 +30,16 @@ class CalculatePage:
         self.ui.endDateInput.setDate(QDate.currentDate())
 
     def submit(self):
-        results = calc.likey_symptom_cause()
+        max_results = self.ui.maxResultsInput.value()
+        delay_time1 = self.ui.timeInput1.value()
+        delay_time2 = self.ui.timeInput2.value()
+        delay_time3 = self.ui.timeInput3.value()
+        start_date = self.ui.startDateInput.text()
+        end_date = self.ui.endDateInput.text()
+
+        print(start_date)
+        print(end_date)
+
+        results = calc.likey_symptom_cause(max_results, (delay_time1, delay_time2, delay_time3), start_date, end_date)
         self.mw.page_connect_results(results)
         
