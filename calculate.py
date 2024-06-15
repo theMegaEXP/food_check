@@ -81,7 +81,7 @@ def likey_symptom_cause():
             top3 = heapq.nlargest(3, all_ingredient_counts, key=all_ingredient_counts.get)
             Print.key_value(symptom, ', '.join(top3))
             results[symptom] = {}
-            results[symptom]['top3'] = top3
+            results[symptom]['24h'] = top3
 
     return results
 
