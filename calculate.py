@@ -42,7 +42,7 @@ def all():
         print()
 
 
-def likey_symptom_cause(max_results: int=4, delay_times: tuple[float, float, float]=(2.35, 5.42, 24.00), start_date: str='05/14/2024', end_date: str='06/14/2024'):
+def likey_symptom_cause(max_results: int, delay_times: tuple[float, float, float], start_date: str, end_date: str):
     #check for incorrect values
     if 0 > max_results >= 10:
         raise Exception("max_results out of range. Must be between 1-10")

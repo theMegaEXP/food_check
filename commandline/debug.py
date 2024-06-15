@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 from commandline.print import Print
 from database.tables import Tables
@@ -33,7 +34,7 @@ def debug():
             Tables.create_tables()
 
         elif query_input == 'calc':
-            print(calc.likey_symptom_cause())
+            print(calc.likey_symptom_cause(3, (2, 6, 24), '05/15/2024', '06/15/2024'))
 
         elif re.search(r'^reset ([^\s]+)$', query_input):
             table_name = query_input.split(' ')[1]
