@@ -3,6 +3,7 @@ from PyQt5.QtCore import QDate
 
 from gui.designer.Ui_calculatePage import Ui_calculatePage
 from gui.widgets.backButton import BackButton
+import calculate as calc
 
 class CalculatePage:
     def __init__(self, main_window):
@@ -29,5 +30,6 @@ class CalculatePage:
         self.ui.endDateInput.setDate(QDate.currentDate())
 
     def submit(self):
-        self.mw.page_connect_results()
+        results = calc.likey_symptom_cause()
+        self.mw.page_connect_results(results)
         

@@ -72,6 +72,7 @@ class MainWindow:
         self.calculate_page.reset()
         self.page_connect(self.calculate_page.widget)
 
-    def page_connect_results(self):
+    def page_connect_results(self, results: dict):
+        self.results_page.set_results(results)
         self.page_connect(self.results_page.widget)
 
