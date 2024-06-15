@@ -17,7 +17,7 @@ class ResultsPage:
         self.ui.mainLayout.insertWidget(0, BackButton(self.mw))
 
     def set_results(self, results: dict):
-        print(results)
+        self.delete_listings()
 
         for symptom, result in results.items():
             listing = ResultListing(self, symptom, result)
@@ -25,9 +25,9 @@ class ResultsPage:
 
         self.ui.resultsLayout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
-    def delete_lisings(self):
-        while self.ui.mainLayout.count():
-            item = self.ui.mainLayout.takeAt(0)
+    def delete_listings(self):
+        while self.ui.resultsLayout.count():
+            item = self.ui.resultsLayout.takeAt(0)
             widget = item.widget()
             if widget:
                 widget.deleteLater()
