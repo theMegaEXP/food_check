@@ -23,7 +23,7 @@ class ResultListing:
             self.ingredient_labels[i].hide()
             self.ingredient_labels[i].setText("")
 
-        self.ui.symptomLabel.setText(self.symptom)
+        self.ui.symptomLabel.setText(self.symptom.title())
         
         for i, (time, ingredients) in enumerate(self.ingredient_delays.items()):
             self.time_labels[i].setText(time)
