@@ -66,5 +66,6 @@ class MainWindow:
         self.page_connect(self.ignored_ingredients_page.widget)
 
     def page_connect_calculation(self):
+        self.calculate_page.reset()
         self.page_connect(self.calculate_page.widget)
 
